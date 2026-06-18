@@ -409,9 +409,119 @@ a { color: inherit; text-decoration: none; }
   .honesty { grid-template-columns: 1fr; gap: 36px; }
 }
 
+/* ============================================================
+   ENHANCEMENTS — texture, motion, micro-interactions
+   ============================================================ */
+
+/* --- warm grain texture over the whole page (very subtle) --- */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  opacity: 0.04;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+.nav, .hero, .band, .section, .quote, .contact, .footer, .marquee { position: relative; z-index: 2; }
+
+/* --- hero: warm amber glow bleeding up from the bottom-right --- */
+.hero { overflow: hidden; }
+.hero::after {
+  content: "";
+  position: absolute;
+  right: -8%; bottom: -45%;
+  width: 80%; height: 90%;
+  background: radial-gradient(closest-side, rgba(255,177,98,0.40), rgba(255,177,98,0) 72%);
+  pointer-events: none;
+  z-index: 0;
+}
+.hero__grid { position: relative; z-index: 1; }
+
+/* --- animated orange dot on the wordmark --- */
+.wm-i::after { animation: dot-drop .6s cubic-bezier(.34,1.56,.64,1) .15s both; }
+.wordmark:hover .wm-i::after { animation: dot-bounce .5s ease; }
+@keyframes dot-drop  { from { transform: translate(-50%, -180%); opacity: 0; } to { transform: translateX(-50%); opacity: 1; } }
+@keyframes dot-bounce { 0%,100% { transform: translateX(-50%); } 40% { transform: translate(-50%, -55%); } }
+
+/* --- scroll reveal (only active when JS adds .js to <html>) --- */
+.js .reveal { opacity: 0; transform: translateY(26px); transition: opacity .7s ease, transform .7s cubic-bezier(.2,.7,.2,1); }
+.js .reveal.is-visible { opacity: 1; transform: none; }
+/* stagger children */
+.js .reveal[data-stagger] > * { opacity: 0; transform: translateY(22px); transition: opacity .6s ease, transform .6s cubic-bezier(.2,.7,.2,1); }
+.js .reveal[data-stagger].is-visible > * { opacity: 1; transform: none; }
+.js .reveal[data-stagger].is-visible > *:nth-child(2) { transition-delay: .08s; }
+.js .reveal[data-stagger].is-visible > *:nth-child(3) { transition-delay: .16s; }
+.js .reveal[data-stagger].is-visible > *:nth-child(4) { transition-delay: .24s; }
+.js .reveal[data-stagger].is-visible > *:nth-child(5) { transition-delay: .32s; }
+
+/* --- niggles marquee --- */
+.marquee {
+  background: var(--ink);
+  color: var(--cream);
+  overflow: hidden;
+  padding: 16px 0;
+  -webkit-mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+          mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+}
+.marquee__track {
+  display: inline-flex;
+  align-items: center;
+  gap: 26px;
+  white-space: nowrap;
+  will-change: transform;
+  animation: marquee 38s linear infinite;
+}
+.marquee__track span:not(.marquee__dot) {
+  font-family: var(--ff-head);
+  font-weight: 500;
+  font-size: 1.05rem;
+  color: var(--cream-soft);
+}
+.marquee__dot { width: 7px; height: 7px; border-radius: 50%; background: var(--amber); flex: 0 0 auto; }
+.marquee:hover .marquee__track { animation-play-state: paused; }
+@keyframes marquee { to { transform: translateX(-50%); } }
+
+/* --- richer button: sliding arrow on the ghost/dark CTAs --- */
+.btn--dark, .btn--ghost { position: relative; }
+
+/* --- card number gets an amber underline that grows on hover --- */
+.card { position: relative; overflow: hidden; }
+.card::after {
+  content: "";
+  position: absolute;
+  left: 28px; bottom: 0;
+  height: 3px; width: 0;
+  background: var(--amber);
+  transition: width .35s cubic-bezier(.2,.7,.2,1);
+}
+.card:hover::after { width: 48px; }
+
+/* --- steps: number turns amber on hover --- */
+.step { transition: transform .2s ease, box-shadow .2s ease; }
+.step:hover { transform: translateY(-4px); box-shadow: 0 20px 44px -28px rgba(27,38,50,0.45); }
+.step:hover .step__num { color: var(--amber); }
+
+/* --- nav links: animated underline --- */
+.nav__links a:not(.btn) { position: relative; }
+.nav__links a:not(.btn)::after {
+  content: ""; position: absolute; left: 0; bottom: -4px;
+  width: 100%; height: 2px; background: var(--terracotta);
+  transform: scaleX(0); transform-origin: right;
+  transition: transform .3s cubic-bezier(.2,.7,.2,1);
+}
+.nav__links a:not(.btn):hover::after { transform: scaleX(1); transform-origin: left; }
+
+/* --- honesty rows: slide + colour on hover --- */
+.honesty li { transition: transform .2s ease, color .2s ease; }
+.honesty__col:first-child li:hover { transform: translateX(6px); color: var(--terracotta); }
+
 /* reduced motion */
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
   .squiggle .draw { animation: none !important; stroke-dashoffset: 0 !important; }
-  .btn:hover, .card:hover { transform: none; }
+  .btn:hover, .card:hover, .step:hover { transform: none; }
+  .marquee__track { animation: none; }
+  .wm-i::after { animation: none; }
+  .js .reveal, .js .reveal[data-stagger] > * { opacity: 1 !important; transform: none !important; }
 }

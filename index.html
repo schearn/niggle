@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>niggle — tiny fixes. big difference.</title>
+  <meta name="description" content="Small, bespoke software tools for small businesses. I find the workflow that's quietly costing your team hours, and build the small tool that fixes it. No bloat, no faff." />
+  <meta name="theme-color" content="#1B2632" />
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="niggle — tiny fixes. big difference." />
+  <meta property="og:description" content="Small, bespoke software tools that fix the everyday workflow niggles off-the-shelf software can't." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://niggle.work" />
+
+  <link rel="icon" href="favicon.svg" type="image/svg+xml" />
+
+  <!-- Fonts: Space Grotesk (headings) + Inter (body) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+  <!-- ===================== NAV ===================== -->
+  <header class="nav" id="top">
+    <div class="container nav__inner">
+      <a class="wordmark" href="#top" aria-label="niggle dot work — home">
+        n<span class="wm-i">ı</span>ggle<span class="wm-tld">.work</span>
+      </a>
+
+      <button class="nav__toggle" aria-label="Toggle menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+
+      <nav class="nav__links" aria-label="Primary">
+        <a href="#what">what I build</a>
+        <a href="#approach">approach</a>
+        <a href="#about">about</a>
+        <a class="btn btn--dark" href="#contact">get in touch</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- ===================== HERO ===================== -->
+  <section class="hero">
+    <div class="container hero__grid">
+      <div class="hero__copy">
+        <h1 class="hero__title">
+          small bespoke<br />software tools<br />for business <span class="accent">niggles</span>
+        </h1>
+        <p class="hero__lead">we fix the faff.</p>
+        <p class="hero__sub">
+          Tiny tools that smooth the kinks in your workflow, so you and your
+          team can get on with the work that actually matters.
+        </p>
+        <div class="hero__cta">
+          <a class="btn btn--dark" href="#what">see what I build</a>
+          <a class="btn btn--ghost" href="#approach">how it works</a>
+        </div>
+      </div>
+
+      <!-- before / after squiggle motif -->
+      <figure class="squiggle" aria-label="A tangled line becoming a straight one — before and after.">
+        <div class="squiggle__row">
+          <span class="squiggle__label">before</span>
+          <svg viewBox="0 0 320 70" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <path class="draw" d="M4 35 C 30 5, 45 65, 70 35 S 100 0, 120 40 S 150 70, 175 30 S 205 5, 230 45 S 262 68, 286 35"
+              stroke="var(--ink)" stroke-width="3" stroke-linecap="round" />
+            <circle cx="300" cy="35" r="7" fill="var(--amber)" />
+          </svg>
+        </div>
+        <div class="squiggle__row">
+          <span class="squiggle__label">after</span>
+          <svg viewBox="0 0 320 70" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <path class="draw" d="M4 35 L 286 35" stroke="var(--ink)" stroke-width="3" stroke-linecap="round" />
+            <circle cx="300" cy="35" r="13" fill="var(--amber)" />
+            <path d="M294 35 l4 4 l7 -8" stroke="var(--ink)" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" fill="none" />
+          </svg>
+        </div>
+      </figure>
+    </div>
+  </section>
+
+  <!-- ===================== FEATURE BAND ===================== -->
+  <section class="band">
+    <div class="container band__grid">
+      <div class="band__item">
+        <span class="band__mark" aria-hidden="true">✓</span>
+        <h3>solves real problems</h3>
+        <p>built around how you actually work — not how software thinks you should.</p>
+      </div>
+      <div class="band__item">
+        <span class="band__mark" aria-hidden="true">⚡</span>
+        <h3>fast to build</h3>
+        <p>small scope, quick turnaround. fast to value, not a six-month project.</p>
+      </div>
+      <div class="band__item">
+        <span class="band__mark" aria-hidden="true">●</span>
+        <h3>made by one person</h3>
+        <p>direct and dependable. you talk to the person who builds the thing.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== WHAT I BUILD ===================== -->
+  <section class="section" id="what">
+    <div class="container">
+      <p class="eyebrow">what I build</p>
+      <h2 class="section__title">Small tools for the jobs<br />off-the-shelf can't quite do.</h2>
+      <p class="section__intro">
+        Most businesses solve a workflow pain by buying a big SaaS product that does
+        80% of what they need — and bloats them with a hundred features they'll never
+        touch. I do the opposite: one sharp tool that fits your problem exactly.
+      </p>
+
+      <div class="cards">
+        <article class="card">
+          <span class="card__num">01</span>
+          <h3>Booking &amp; scheduling</h3>
+          <p>The booking system you never had. Kit, rooms, jobs and people — sorted, without the paper diary.</p>
+        </article>
+        <article class="card">
+          <span class="card__num">02</span>
+          <h3>Quoting &amp; estimating</h3>
+          <p>Stop re-typing the same line items. A configurator that spits out a clean, branded quote in seconds.</p>
+        </article>
+        <article class="card">
+          <span class="card__num">03</span>
+          <h3>Intake &amp; triage</h3>
+          <p>A smart assistant that answers the FAQs, books the appointments and routes the tricky ones to a human.</p>
+        </article>
+        <article class="card">
+          <span class="card__num">04</span>
+          <h3>Stop the double-entry</h3>
+          <p>The quiet glue that stops your team re-keying the same data between three different systems.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== APPROACH ===================== -->
+  <section class="section section--alt" id="approach">
+    <div class="container">
+      <p class="eyebrow">how it works</p>
+      <h2 class="section__title">Shadow. Build. Stick around.</h2>
+      <p class="section__intro">
+        No lengthy discovery decks. I come in, watch how you really work, and find the
+        single biggest win — then build it.
+      </p>
+
+      <ol class="steps">
+        <li class="step">
+          <span class="step__num">01</span>
+          <h3>Shadow</h3>
+          <p>Half a day on-site. I watch how the work flows and hear where it snags.</p>
+        </li>
+        <li class="step">
+          <span class="step__num">02</span>
+          <h3>Distil</h3>
+          <p>I turn all of that into a plain-English picture of your biggest time-sinks.</p>
+        </li>
+        <li class="step">
+          <span class="step__num">03</span>
+          <h3>Pick the win</h3>
+          <p>We choose the one tool with the highest impact and the lowest fuss.</p>
+        </li>
+        <li class="step">
+          <span class="step__num">04</span>
+          <h3>Build</h3>
+          <p>Fixed price, fast turnaround. A tool fitted exactly to you — nothing spare.</p>
+        </li>
+        <li class="step">
+          <span class="step__num">05</span>
+          <h3>Stick around</h3>
+          <p>I keep it running and tweak it as you grow. You're never left stranded.</p>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- ===================== GREAT AT / WON'T DO ===================== -->
+  <section class="section" id="honesty">
+    <div class="container">
+      <div class="honesty">
+        <div class="honesty__col">
+          <h3 class="honesty__head honesty__head--yes"><span aria-hidden="true">✓</span> great at</h3>
+          <ul>
+            <li>workflow niggles</li>
+            <li>time-saving automations</li>
+            <li>small bespoke tools</li>
+            <li>plain speaking</li>
+            <li>getting things done</li>
+          </ul>
+        </div>
+        <div class="honesty__col">
+          <h3 class="honesty__head honesty__head--no"><span aria-hidden="true">✕</span> won't do</h3>
+          <ul>
+            <li>bloated platforms</li>
+            <li>ten-step onboarding</li>
+            <li>buzzword bingo</li>
+            <li>one-size-fits-all</li>
+            <li>moving ten thousand storage files</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== PULL QUOTE ===================== -->
+  <section class="quote">
+    <div class="container">
+      <blockquote>
+        <p>Every business has them.</p>
+        <p>Those tiny annoyances that steal time.</p>
+        <p>I build small tools that fix them.</p>
+        <p class="quote__last">So your day runs smoother.</p>
+      </blockquote>
+    </div>
+  </section>
+
+  <!-- ===================== ABOUT ===================== -->
+  <section class="section section--alt" id="about">
+    <div class="container about">
+      <div class="about__copy">
+        <p class="eyebrow">about</p>
+        <h2 class="section__title">Niggle is me — Sam.</h2>
+        <p>
+          I've spent years in media and production, solving exactly these kinds of
+          operational headaches from the inside. My background is at
+          <strong>Omni</strong> and building digital for <strong>WhoCaresWins</strong> —
+          where I learned to spot the workflow that's quietly costing a team hours, and fix it.
+        </p>
+        <p>
+          I've built genuinely new things, too — including <strong>Ping</strong>, a UK
+          news-intelligence platform, alongside client web platforms and internal tools
+          that quietly save teams hours every week.
+        </p>
+        <p>
+          The point is simple: I think like someone who's <em>sat in your business</em> —
+          not like a software company trying to sell to it.
+        </p>
+      </div>
+      <aside class="about__card">
+        <p class="about__tag">tiny fixes.<br />big difference.</p>
+        <p class="about__meta">solo-founded · small tools · real results</p>
+        <p class="about__url">niggle.work</p>
+      </aside>
+    </div>
+  </section>
+
+  <!-- ===================== CONTACT ===================== -->
+  <section class="contact" id="contact">
+    <div class="container contact__inner">
+      <h2>Got a niggle?</h2>
+      <p>
+        Tell me what's driving your team mad. The first chat's free and there's no
+        pitch — just an honest opinion on whether I can help, and how.
+      </p>
+      <a class="btn btn--amber" href="mailto:hello@niggle.work">get in touch</a>
+      <p class="contact__small">or email <a href="mailto:hello@niggle.work">hello@niggle.work</a></p>
+    </div>
+  </section>
+
+  <!-- ===================== FOOTER ===================== -->
+  <footer class="footer">
+    <div class="container footer__inner">
+      <span class="wordmark wordmark--sm">n<span class="wm-i">ı</span>ggle<span class="wm-tld">.work</span></span>
+      <span class="footer__tag">tiny fixes. big difference.</span>
+      <span class="footer__copy">© <span id="year"></span> niggle</span>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

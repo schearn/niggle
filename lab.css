@@ -100,10 +100,15 @@ body::after{content:"";position:fixed;inset:0;z-index:9;pointer-events:none;opac
 .how__steps{color:var(--oat);font-size:1.2rem;font-family:var(--ff-head);font-weight:500}
 
 /* ===== CONTACT FORM (cursor glow, stronger than hero) ===== */
-.contact{position:relative;background:var(--ink);color:var(--cream);padding:130px 0;text-align:center;overflow:hidden}
-.contact__spot{position:absolute;inset:0;z-index:0;pointer-events:none;mix-blend-mode:screen;
-  background:radial-gradient(560px 560px at var(--cx,50%) var(--cy,40%), rgba(255,177,98,.6), rgba(255,177,98,.2) 38%, transparent 70%)}
+.contact{position:relative;background:var(--ink);color:var(--cream);padding:130px 0;text-align:center}
 .contact__inner{position:relative;z-index:1;max-width:560px}
+@property --angle{syntax:"<angle>";initial-value:0deg;inherits:false}
+.formcard{position:relative;margin-top:10px;border-radius:26px;padding:2px;
+  background:conic-gradient(from var(--angle),#A35139,#FFB162,#EEE9DF,#FFB162,#A35139);
+  animation:spin 5s linear infinite}
+.formcard::after{content:"";position:absolute;inset:0;border-radius:inherit;background:inherit;filter:blur(18px);opacity:.5;z-index:-1}
+.formcard__inner{background:#1d2935;border-radius:24px;padding:32px}
+@keyframes spin{to{--angle:360deg}}
 .contact__title{font-size:clamp(2.8rem,8vw,5.5rem);color:var(--cream)}
 .contact__p{font-size:1.2rem;color:var(--oat);margin:18px 0 38px}
 .niggleform{display:grid;gap:14px;text-align:left}

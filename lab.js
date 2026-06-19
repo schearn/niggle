@@ -52,16 +52,7 @@ const io = new IntersectionObserver((entries, obs) => {
 document.querySelectorAll('.eyebrow, .h2, .build__lead, .cloud, .build__foot, .how__title, .how__steps, .contact__title, .contact__p, .niggleform')
   .forEach((el) => { el.classList.add('reveal'); io.observe(el); });
 
-// 5. Contact spotlight (stronger) + demo submit
-const contact = document.querySelector('.contact');
-const cspot = document.querySelector('.contact__spot');
-if (contact && cspot) {
-  contact.addEventListener('pointermove', (e) => {
-    const r = contact.getBoundingClientRect();
-    cspot.style.setProperty('--cx', `${e.clientX - r.left}px`);
-    cspot.style.setProperty('--cy', `${e.clientY - r.top}px`);
-  });
-}
+// 5. Contact form demo submit
 const form = document.querySelector('.niggleform');
 if (form) {
   form.addEventListener('submit', (e) => {

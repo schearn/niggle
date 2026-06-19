@@ -532,11 +532,71 @@ body::before {
   .nav__links { top: 68px; }
 }
 
+/* ============================================================
+   SOLID NAVY HEADER + ORANGE-DOT CTA
+   ============================================================ */
+.nav--solid {
+  background: var(--ink);
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+  backdrop-filter: none;
+}
+.nav--solid .nav__links a { color: var(--cream); }
+.nav--solid .nav__links a:not(.btn--dot):hover { color: #fff; }
+.nav--solid .nav__links a:not(.btn--dot)::after { background: var(--amber); }
+.nav--solid .nav__toggle span { background: var(--cream); }
+
+/* the CTA is the brand's orange dot; expands into a pill on hover/focus */
+.btn--dot {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px; height: 44px;
+  border-radius: 999px;
+  background: var(--amber);
+  flex: 0 0 auto;
+  z-index: 3;
+  transition: transform .2s ease, box-shadow .25s ease;
+}
+.btn--dot:hover { transform: translateY(-1px); box-shadow: 0 8px 22px -8px rgba(255,177,98,0.7); }
+.btn--dot__label {
+  position: absolute;
+  right: 0; top: 0;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 0 22px;
+  max-width: 44px;
+  overflow: hidden;
+  white-space: nowrap;
+  background: var(--amber);
+  color: var(--ink);
+  border-radius: 999px;
+  font-family: var(--ff-head);
+  font-weight: 600;
+  font-size: 0.95rem;
+  opacity: 0;
+  transition: max-width .42s cubic-bezier(.2,.7,.2,1), opacity .2s ease;
+}
+.btn--dot:hover .btn--dot__label,
+.btn--dot:focus-visible .btn--dot__label { max-width: 220px; opacity: 1; }
+/* nudge the dot away from "about" so the expanded pill has room */
+.nav--solid .nav__links { gap: 34px; }
+.btn--dot { margin-left: 6px; }
+
+@media (max-width: 680px) {
+  .nav--solid .nav__links { background: var(--ink); border-bottom-color: rgba(255,255,255,0.08); }
+  /* in the mobile menu, show the CTA as a full labelled pill */
+  .btn--dot { width: auto; height: 46px; }
+  .btn--dot__label { position: static; max-width: none; opacity: 1; }
+}
+
 /* reduced motion */
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
   .squiggle .draw { animation: none !important; stroke-dashoffset: 0 !important; }
-  .btn:hover, .card:hover, .step:hover, .brand:hover .brand__img { transform: none; }
+  .btn:hover, .card:hover, .step:hover, .brand:hover .brand__img, .btn--dot:hover { transform: none; }
   .marquee__track { animation: none; }
   .wm-i::after { animation: none; }
   .js .reveal, .js .reveal[data-stagger] > * { opacity: 1 !important; transform: none !important; }

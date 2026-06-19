@@ -1,5 +1,5 @@
 /* ============================================================
-   niggle.work — bold build (navy / cream / amber)
+   niggle.work: bold build (navy / cream / amber)
    ============================================================ */
 :root{
   --cream:#EEE9DF; --oat:#C9C1B1; --ink:#1B2632; --slate:#2C3B4D;
@@ -17,7 +17,7 @@ a{color:inherit;text-decoration:none}
 .eyebrow{font-family:var(--ff-head);font-weight:500;color:var(--amber);letter-spacing:.12em;text-transform:uppercase;font-size:.8rem;margin-bottom:18px}
 .eyebrow--light{color:var(--terra)}
 
-/* per-element text selection — light sections (build, quote) */
+/* per-element text selection, light sections (build, quote) */
 ::selection{background:var(--amber);color:var(--ink)}
 ::-moz-selection{background:var(--amber);color:var(--ink)}
 .h2::selection,h2::selection,h3::selection,.quote p::selection{background:var(--terra);color:var(--cream)}

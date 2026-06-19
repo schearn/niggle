@@ -1,4 +1,4 @@
-// niggle.work — interactions
+// niggle.work interactions
 document.documentElement.classList.add('js');
 
 // Footer year
@@ -45,7 +45,7 @@ const io = new IntersectionObserver((entries, obs) => {
 document.querySelectorAll('.band__item, .eyebrow, .h2, .build__lead, .cloud, .build__foot, .drawline, .how__title, .step, .quote blockquote, .about__copy, .about__side, .contact__title, .contact__p, .formcard')
   .forEach((el) => { el.classList.add('reveal'); io.observe(el); });
 
-// Contact form — sends via Web3Forms (emails land privately in the configured inbox)
+// Contact form: sends via Web3Forms (emails land privately in the configured inbox)
 const form = document.querySelector('.niggleform');
 if (form) {
   form.addEventListener('submit', async (e) => {
@@ -63,7 +63,7 @@ if (form) {
       });
       const data = await res.json();
       if (data.success) {
-        form.innerHTML = '<p class="formdone">Nice one — I\'ll be in touch shortly.</p>';
+        form.innerHTML = '<p class="formdone">Nice one, I\'ll be in touch shortly.</p>';
       } else {
         throw new Error(data.message || 'Submission failed');
       }
@@ -72,7 +72,7 @@ if (form) {
       if (btnLabel) btnLabel.textContent = 'send it over';
       if (!form.querySelector('.formerr')) {
         form.insertAdjacentHTML('beforeend',
-          '<p class="formerr">That didn\'t send — email <a href="mailto:hello@niggle.work">hello@niggle.work</a> directly?</p>');
+          '<p class="formerr">That didn\'t send. Email <a href="mailto:hello@niggle.work">hello@niggle.work</a> directly?</p>');
       }
     }
   });

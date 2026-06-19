@@ -45,13 +45,14 @@
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
+  <a class="skip" href="#main">Skip to content</a>
 
   <!-- ===================== NAV ===================== -->
   <header class="nav" id="top">
     <div class="nav__wrap">
       <a class="brand" href="#top" aria-label="niggle home"><img src="logo-cream.svg?v=1" alt="niggle" /></a>
-      <button class="nav__toggle" aria-label="Toggle menu" aria-expanded="false"><span></span><span></span><span></span></button>
-      <nav class="nav__links" aria-label="Primary">
+      <button class="nav__toggle" aria-label="Toggle menu" aria-expanded="false" aria-controls="primary-nav"><span></span><span></span><span></span></button>
+      <nav class="nav__links" id="primary-nav" aria-label="Primary">
         <a href="#build">what I build</a>
         <a href="#how">how it works</a>
         <a href="#about">about</a>
@@ -62,6 +63,8 @@
       </nav>
     </div>
   </header>
+
+  <main id="main">
 
   <!-- ===================== HERO ===================== -->
   <section class="hero" id="hero">
@@ -80,7 +83,8 @@
   </section>
 
   <!-- ===================== FEATURE BAND ===================== -->
-  <section class="band">
+  <section class="band" aria-labelledby="band-h">
+    <h2 id="band-h" class="sr-only">Why work with niggle</h2>
     <div class="wrap band__grid">
       <div class="band__item">
         <span class="band__mark" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12.5 9 17.5 20 6.5"/></svg></span>
@@ -100,7 +104,7 @@
   <!-- ===================== WHAT I BUILD ===================== -->
   <section class="build" id="build">
     <div class="wrap">
-      <p class="eyebrow">what I build</p>
+      <p class="eyebrow eyebrow--light">what I build</p>
       <h2 class="h2">If your team does it,<br />I can build a tool for it.</h2>
       <p class="build__lead">There's no fixed menu. A few of the shapes it takes:</p>
       <ul class="cloud">
@@ -135,9 +139,9 @@
 
   <!-- ===================== HOW IT WORKS ===================== -->
   <section class="how" id="how">
-    <p class="eyebrow eyebrow--light center">how it works</p>
+    <p class="eyebrow center">how it works</p>
     <h2 class="how__title">From tangled to sorted.</h2>
-    <div class="how__squiggle" aria-label="a tangled line straightening out">
+    <div class="how__squiggle" aria-hidden="true">
       <svg viewBox="0 0 1440 220" width="100%" preserveAspectRatio="none" aria-hidden="true">
         <path fill="none" stroke="var(--amber)" stroke-width="5" stroke-linecap="round" vector-effect="non-scaling-stroke"
               d="M0 120 C 130 50, 270 190, 400 120 C 500 75, 560 75, 620 120 C 1000 -20, 460 -20, 820 120 C 950 175, 1090 65, 1210 120 C 1330 165, 1385 120, 1440 120">
@@ -204,14 +208,16 @@
           <input type="hidden" name="subject" value="New niggle enquiry from niggle.work" />
           <input type="hidden" name="from_name" value="niggle.work" />
           <input type="checkbox" name="botcheck" class="hp" tabindex="-1" autocomplete="off" aria-hidden="true" />
-          <input name="name" required placeholder="your name" />
-          <input type="email" name="email" required placeholder="your email" />
-          <textarea name="niggle" rows="4" required placeholder="what's the niggle?"></textarea>
+          <input name="name" required placeholder="your name" aria-label="Your name" autocomplete="name" />
+          <input type="email" name="email" required placeholder="your email" aria-label="Your email" autocomplete="email" />
+          <textarea name="niggle" rows="4" required placeholder="what's the niggle?" aria-label="What's the niggle?"></textarea>
           <button type="submit" class="formbtn magnetic"><span>send it over</span></button>
         </form>
       </div></div>
     </div>
   </section>
+
+  </main>
 
   <footer class="lfoot">
     <span class="lfoot__brand">niggle</span>

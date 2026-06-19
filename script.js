@@ -29,14 +29,17 @@ if (hero && spot) {
   });
 }
 
-// Magnetic buttons
-document.querySelectorAll('.magnetic').forEach((el) => {
-  el.addEventListener('pointermove', (e) => {
-    const r = el.getBoundingClientRect();
-    el.style.transform = `translate(${(e.clientX - (r.left + r.width / 2)) * 0.35}px, ${(e.clientY - (r.top + r.height / 2)) * 0.35}px)`;
+// Magnetic buttons (skipped when the user prefers reduced motion)
+const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+if (!reduceMotion) {
+  document.querySelectorAll('.magnetic').forEach((el) => {
+    el.addEventListener('pointermove', (e) => {
+      const r = el.getBoundingClientRect();
+      el.style.transform = `translate(${(e.clientX - (r.left + r.width / 2)) * 0.35}px, ${(e.clientY - (r.top + r.height / 2)) * 0.35}px)`;
+    });
+    el.addEventListener('pointerleave', () => { el.style.transform = ''; });
   });
-  el.addEventListener('pointerleave', () => { el.style.transform = ''; });
-});
+}
 
 // Scroll reveal
 const io = new IntersectionObserver((entries, obs) => {

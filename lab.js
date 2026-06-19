@@ -39,6 +39,5 @@ const io = new IntersectionObserver((entries, obs) => {
     if (e.isIntersecting) { e.target.classList.add('in'); obs.unobserve(e.target); }
   });
 }, { threshold: 0.2 });
-document.querySelectorAll('.eyebrow, .h2, .tilt, .how__p, .bigsquiggle, .cta__title, .cta__p')
+document.querySelectorAll('.eyebrow, .h2, .build__lead, .cloud, .build__foot, .how__title, .how__steps, .cta__title, .cta__p')
   .forEach((el) => { el.classList.add('reveal'); io.observe(el); });
-io.observe(document.querySelector('.bigsquiggle'));

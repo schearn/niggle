@@ -12,30 +12,26 @@
 </head>
 <body>
 
-  <!-- ===== NAV ===== -->
+  <!-- ===== NAV: solid navy bar + big logo + dot CTA ===== -->
   <header class="lnav">
-    <a class="lnav__brand" href="#">niggle</a>
-    <nav class="lnav__links">
-      <a href="#build">what I build</a>
-      <a href="#how">how it works</a>
-      <a class="dotcta" href="#contact" aria-label="get in touch"><span>get in touch</span></a>
-    </nav>
+    <div class="lnav__wrap">
+      <a class="lbrand" href="#hero" aria-label="niggle home"><img src="logo-cream.svg?v=1" alt="niggle" /></a>
+      <nav class="lnav__links">
+        <a href="#build">what I build</a>
+        <a href="#how">how it works</a>
+        <a class="dotcta" href="#contact" aria-label="get in touch"><span>get in touch</span></a>
+      </nav>
+    </div>
   </header>
 
-  <!-- ===== HERO (aurora + spotlight + kinetic type) ===== -->
+  <!-- ===== HERO ===== -->
   <section class="hero" id="hero">
     <div class="aurora" aria-hidden="true"></div>
     <div class="spotlight" aria-hidden="true"></div>
     <div class="hero__inner">
       <p class="hero__kicker">small, bespoke software tools</p>
-      <h1 class="hero__title">
-        <span class="line">we fix</span>
-        <span class="line">the <span class="hl">faff<span class="dot">.</span></span></span>
-      </h1>
-      <p class="hero__sub">
-        I find the workflow quietly costing your team hours, and build the one small
-        tool that kills it. No bloat. No lock-in.
-      </p>
+      <h1 class="hero__title"><span class="line">we fix</span><span class="line">the <span class="hl">faff<span class="dot">.</span></span></span></h1>
+      <p class="hero__sub">I find the workflow quietly costing your team hours, and build the one small tool that kills it. No bloat. No lock-in.</p>
       <div class="hero__cta">
         <a class="btn-primary magnetic" href="#contact"><span>start a niggle</span></a>
         <a class="btn-ghost" href="#build">see what I build</a>
@@ -44,48 +40,50 @@
     <div class="scrollcue" aria-hidden="true"><span></span></div>
   </section>
 
-  <!-- ===== MARQUEE-FREE KINETIC STRIP ===== -->
-  <section class="strip" aria-hidden="true">
-    <div class="strip__row">
-      <span>booking</span><i></i><span>quoting</span><i></i><span>intake</span><i></i>
-      <span>automation</span><i></i><span>dashboards</span><i></i><span>the faff</span><i></i>
-    </div>
-  </section>
-
-  <!-- ===== WHAT I BUILD (3D tilt cards) ===== -->
+  <!-- ===== WHAT I BUILD: no fixed menu ===== -->
   <section class="build" id="build">
     <div class="wrap">
       <p class="eyebrow">what I build</p>
-      <h2 class="h2">Small tools for the jobs<br />off-the-shelf can't quite do.</h2>
-      <div class="tiltgrid">
-        <article class="tilt" data-n="01"><div class="tilt__in"><span class="tilt__num">01</span><h3>Booking &amp; scheduling</h3><p>Kit, rooms, jobs and people, sorted. No paper diary.</p></div></article>
-        <article class="tilt" data-n="02"><div class="tilt__in"><span class="tilt__num">02</span><h3>Quoting &amp; estimating</h3><p>Stop re-typing line items. A clean branded quote in seconds.</p></div></article>
-        <article class="tilt" data-n="03"><div class="tilt__in"><span class="tilt__num">03</span><h3>Intake &amp; triage</h3><p>An assistant that answers, books, and routes the tricky ones.</p></div></article>
-        <article class="tilt" data-n="04"><div class="tilt__in"><span class="tilt__num">04</span><h3>Stop the double-entry</h3><p>The quiet glue between your three different systems.</p></div></article>
-      </div>
+      <h2 class="h2">If your team does it,<br />I can build a tool for it.</h2>
+      <p class="build__lead">There's no fixed menu. A few of the shapes it takes:</p>
+      <ul class="cloud">
+        <li>booking systems</li>
+        <li class="hot">quote builders</li>
+        <li>intake &amp; triage bots</li>
+        <li>ops dashboards</li>
+        <li>the Friday report, automated</li>
+        <li class="hot">a news-intelligence platform</li>
+        <li>kit &amp; asset tracking</li>
+        <li>client portals</li>
+        <li>that spreadsheet, but alive</li>
+        <li>approval flows</li>
+        <li>data plumbing between systems</li>
+        <li class="ghostpill">…whatever yours is</li>
+      </ul>
+      <p class="build__foot">From a five-minute annoyance to something genuinely new — I built <strong>Ping</strong>, a UK news-intelligence platform, the same way. If it can be built, it's on the table.</p>
     </div>
   </section>
 
-  <!-- ===== SQUIGGLE DIVIDER (scroll draw) ===== -->
+  <!-- ===== HOW IT WORKS: full-width looping squiggle ===== -->
   <section class="how" id="how">
-    <div class="wrap how__grid">
-      <div>
-        <p class="eyebrow eyebrow--light">how it works</p>
-        <h2 class="h2 h2--light">From tangled<br />to sorted.</h2>
-        <p class="how__p">Shadow your team. Find the biggest win. Build it fast. Hand it over.</p>
-      </div>
-      <figure class="bigsquiggle" aria-label="tangled to straight">
-        <svg viewBox="0 0 460 220" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-          <path class="sq" d="M10 60 C 60 0, 90 120, 140 60 S 220 -10, 270 70 S 350 130, 450 55"
-                stroke="var(--amber)" stroke-width="5" stroke-linecap="round"/>
-          <path class="sq2" d="M10 165 L 430 165" stroke="var(--cream)" stroke-width="5" stroke-linecap="round"/>
-          <circle class="sqdot" cx="450" cy="165" r="16" fill="var(--amber)"/>
-        </svg>
-      </figure>
+    <p class="eyebrow eyebrow--light center">how it works</p>
+    <h2 class="how__title">From tangled to sorted.</h2>
+    <div class="how__squiggle" aria-label="a tangled line straightening out">
+      <svg viewBox="0 0 1440 180" width="100%" preserveAspectRatio="none" aria-hidden="true">
+        <path fill="none" stroke="var(--amber)" stroke-width="5" stroke-linecap="round" vector-effect="non-scaling-stroke"
+              d="M0 90 C 160 10, 320 170, 480 90 S 800 10, 960 90 S 1280 170, 1440 90">
+          <animate attributeName="d" dur="5s" repeatCount="indefinite"
+            calcMode="spline" keyTimes="0;0.5;1" keySplines="0.4 0 0.2 1; 0.4 0 0.2 1"
+            values="M0 90 C 160 10, 320 170, 480 90 S 800 10, 960 90 S 1280 170, 1440 90;
+                    M0 90 C 160 90, 320 90, 480 90 S 800 90, 960 90 S 1280 90, 1440 90;
+                    M0 90 C 160 10, 320 170, 480 90 S 800 10, 960 90 S 1280 170, 1440 90" />
+        </path>
+      </svg>
     </div>
+    <p class="how__steps center">Shadow your team. Find the biggest win. Build it fast. Hand it over.</p>
   </section>
 
-  <!-- ===== BIG CTA COLOUR BLOCK ===== -->
+  <!-- ===== BIG CTA ===== -->
   <section class="cta" id="contact">
     <div class="wrap cta__inner">
       <h2 class="cta__title">Got a niggle?</h2>
@@ -94,9 +92,7 @@
     </div>
   </section>
 
-  <footer class="lfoot">
-    <span>niggle</span><span>Simple tools. Serious impact.</span>
-  </footer>
+  <footer class="lfoot"><span>niggle</span><span>Simple tools. Serious impact.</span></footer>
 
   <script src="lab.js"></script>
 </body>

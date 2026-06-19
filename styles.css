@@ -138,6 +138,8 @@ body::after{content:"";position:fixed;inset:0;z-index:9;pointer-events:none;opac
 /* ===================== CONTACT ===================== */
 .contact{position:relative;background:var(--ink);color:var(--cream);padding:130px 0;text-align:center;scroll-margin-top:84px}
 .contact__inner{position:relative;z-index:1;max-width:560px}
+.contact__title{font-size:clamp(2.8rem,8vw,5.5rem);color:var(--cream)}
+.contact__p{font-size:1.2rem;color:var(--oat);margin:20px 0 56px}
 @property --angle{syntax:"<angle>";initial-value:0deg;inherits:false}
 .formcard{position:relative;margin-top:10px;border-radius:26px;padding:2px;
   background:conic-gradient(from var(--angle),#A35139,#FFB162,#EEE9DF,#FFB162,#A35139);

@@ -9,7 +9,7 @@
 }
 *{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth}
-body{font-family:var(--ff-body);background:var(--ink);color:var(--cream);-webkit-font-smoothing:antialiased;overflow-x:hidden}
+body{font-family:var(--ff-body);background:var(--ink);color:var(--cream);-webkit-font-smoothing:antialiased}
 .wrap{max-width:1140px;margin-inline:auto;padding-inline:32px}
 h1,h2,h3{font-family:var(--ff-head);font-weight:700;line-height:1;letter-spacing:-0.03em}
 a{color:inherit;text-decoration:none}
@@ -87,6 +87,14 @@ body::after{content:"";position:fixed;inset:0;z-index:9;pointer-events:none;opac
 .cloud li:hover{transform:translateY(-3px) rotate(0)}
 .build__foot{margin-top:42px;font-size:1.2rem;line-height:1.6;max-width:60ch;color:rgba(27,38,50,.8)}
 .build__foot strong{color:var(--ink);font-weight:600;border-bottom:3px solid var(--amber)}
+.drawline{margin-top:64px;padding-top:48px;border-top:1px solid rgba(27,38,50,.14)}
+.drawline__h{font-family:var(--ff-head);font-weight:700;font-size:clamp(1.6rem,3.6vw,2.4rem);color:var(--ink);letter-spacing:-0.02em}
+.drawline__p{max-width:64ch;margin:18px 0 28px;color:rgba(27,38,50,.7);font-size:1.1rem;line-height:1.6}
+.wontdo{list-style:none;display:flex;flex-wrap:wrap;gap:12px}
+.wontdo li{font-family:var(--ff-head);font-weight:500;font-size:1rem;padding:10px 20px;border-radius:999px;border:1px dashed rgba(27,38,50,.3);color:rgba(27,38,50,.55)}
+.wontdo li::before{content:"✕";margin-right:9px;color:var(--terra);font-weight:700}
+
+.build,.how,.contact{scroll-margin-top:84px}
 
 /* ===== HOW IT WORKS (full-bleed looping squiggle) ===== */
 .how{background:var(--ink);padding:110px 0 120px;overflow:hidden}

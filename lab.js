@@ -51,3 +51,25 @@ if (form) {
     form.innerHTML = '<p class="formdone">Nice one — I\'ll be in touch shortly.</p>';
   });
 }
+
+// 6. Scroll-spy: reflect the section in view in the URL hash
+const spyEls = ['hero', 'build', 'how', 'contact']
+  .map((id) => document.getElementById(id))
+  .filter(Boolean);
+let currentHash = location.hash;
+let spyTick = false;
+function updateSpy() {
+  spyTick = false;
+  const mid = window.scrollY + window.innerHeight / 2;
+  let active = spyEls[0];
+  for (const el of spyEls) { if (el.offsetTop <= mid) active = el; }
+  const target = active.id === 'hero' ? location.pathname + location.search : '#' + active.id;
+  if (target !== currentHash) {
+    currentHash = target;
+    history.replaceState(null, '', target);
+  }
+}
+window.addEventListener('scroll', () => {
+  if (!spyTick) { spyTick = true; requestAnimationFrame(updateSpy); }
+}, { passive: true });
+updateSpy();

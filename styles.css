@@ -2,6 +2,13 @@
    niggle.work, brand: bold, witty, precise
    ============================================================ */
 
+/* branded text selection: amber highlight, text reversed out to navy */
+::selection      { background: #FFB162; color: #1B2632; }
+::-moz-selection { background: #FFB162; color: #1B2632; }
+/* on the amber contact section, flip so the selection stays visible */
+.contact ::selection      { background: #1B2632; color: #EEE9DF; }
+.contact ::-moz-selection { background: #1B2632; color: #EEE9DF; }
+
 :root {
   /* palette */
   --cream:      #EEE9DF;  /* Palladian, canvas */
@@ -455,32 +462,6 @@ body::before {
 .js .reveal[data-stagger].is-visible > *:nth-child(4) { transition-delay: .24s; }
 .js .reveal[data-stagger].is-visible > *:nth-child(5) { transition-delay: .32s; }
 
-/* --- niggles marquee --- */
-.marquee {
-  background: var(--ink);
-  color: var(--cream);
-  overflow: hidden;
-  padding: 16px 0;
-  -webkit-mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
-          mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
-}
-.marquee__track {
-  display: inline-flex;
-  align-items: center;
-  gap: 26px;
-  white-space: nowrap;
-  will-change: transform;
-  animation: marquee 38s linear infinite;
-}
-.marquee__track span:not(.marquee__dot) {
-  font-family: var(--ff-head);
-  font-weight: 500;
-  font-size: 1.05rem;
-  color: var(--cream-soft);
-}
-.marquee__dot { width: 7px; height: 7px; border-radius: 50%; background: var(--amber); flex: 0 0 auto; }
-.marquee:hover .marquee__track { animation-play-state: paused; }
-@keyframes marquee { to { transform: translateX(-50%); } }
 
 /* --- richer button: sliding arrow on the ghost/dark CTAs --- */
 .btn--dark, .btn--ghost { position: relative; }

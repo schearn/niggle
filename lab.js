@@ -49,5 +49,24 @@ const io = new IntersectionObserver((entries, obs) => {
     if (e.isIntersecting) { e.target.classList.add('in'); obs.unobserve(e.target); }
   });
 }, { threshold: 0.2 });
-document.querySelectorAll('.eyebrow, .h2, .build__lead, .cloud, .build__foot, .how__title, .how__steps, .cta__title, .cta__p')
+document.querySelectorAll('.eyebrow, .h2, .build__lead, .cloud, .build__foot, .how__title, .how__steps, .contact__title, .contact__p, .niggleform')
   .forEach((el) => { el.classList.add('reveal'); io.observe(el); });
+
+// 5. Contact spotlight (stronger) + demo submit
+const contact = document.querySelector('.contact');
+const cspot = document.querySelector('.contact__spot');
+if (contact && cspot) {
+  contact.addEventListener('pointermove', (e) => {
+    const r = contact.getBoundingClientRect();
+    cspot.style.setProperty('--cx', `${e.clientX - r.left}px`);
+    cspot.style.setProperty('--cy', `${e.clientY - r.top}px`);
+  });
+}
+const form = document.querySelector('.niggleform');
+if (form) {
+  form.addEventListener('submit', (e) => {
+    e.preventDefault();
+    if (!form.checkValidity()) { form.reportValidity(); return; }
+    form.innerHTML = '<p class="formdone">Nice one — I\'ll be in touch shortly.</p>';
+  });
+}

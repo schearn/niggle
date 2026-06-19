@@ -19,7 +19,10 @@
       <nav class="lnav__links">
         <a href="#build">what I build</a>
         <a href="#how">how it works</a>
-        <a class="dotcta" href="#contact" aria-label="get in touch"><span>get in touch</span></a>
+        <a class="dotcta" href="#contact" aria-label="get in touch">
+          <svg class="dotcta__ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>
+          <span>get in touch</span>
+        </a>
       </nav>
     </div>
   </header>
@@ -72,26 +75,35 @@
     <p class="eyebrow eyebrow--light center">how it works</p>
     <h2 class="how__title">From tangled to sorted.</h2>
     <div class="how__squiggle" aria-label="a tangled line straightening out">
-      <svg viewBox="0 0 1440 180" width="100%" preserveAspectRatio="none" aria-hidden="true">
+      <svg viewBox="0 0 1440 220" width="100%" preserveAspectRatio="none" aria-hidden="true">
         <path fill="none" stroke="var(--amber)" stroke-width="5" stroke-linecap="round" vector-effect="non-scaling-stroke"
-              d="M0 90 C 160 10, 320 170, 480 90 S 800 10, 960 90 S 1280 170, 1440 90">
-          <animate attributeName="d" dur="5s" repeatCount="indefinite"
-            calcMode="spline" keyTimes="0;0.5;1" keySplines="0.4 0 0.2 1; 0.4 0 0.2 1"
-            values="M0 90 C 160 10, 320 170, 480 90 S 800 10, 960 90 S 1280 170, 1440 90;
-                    M0 90 C 160 90, 320 90, 480 90 S 800 90, 960 90 S 1280 90, 1440 90;
-                    M0 90 C 160 10, 320 170, 480 90 S 800 10, 960 90 S 1280 170, 1440 90" />
+              d="M0 120 C 130 50, 270 190, 400 120 C 500 75, 560 75, 620 120 C 1000 -20, 460 -20, 820 120 C 950 175, 1090 65, 1210 120 C 1330 165, 1385 120, 1440 120">
+          <animate attributeName="d" dur="4.5s" repeatCount="indefinite"
+            calcMode="spline" keyTimes="0;0.28;0.82;1"
+            keySplines="0.8 0 0.15 1; 0 0 1 1; 0.45 0 0.55 1"
+            values="M0 120 C 130 50, 270 190, 400 120 C 500 75, 560 75, 620 120 C 1000 -20, 460 -20, 820 120 C 950 175, 1090 65, 1210 120 C 1330 165, 1385 120, 1440 120;
+                    M0 120 C 130 120, 270 120, 400 120 C 500 120, 560 120, 620 120 C 1000 120, 460 120, 820 120 C 950 120, 1090 120, 1210 120 C 1330 120, 1385 120, 1440 120;
+                    M0 120 C 130 120, 270 120, 400 120 C 500 120, 560 120, 620 120 C 1000 120, 460 120, 820 120 C 950 120, 1090 120, 1210 120 C 1330 120, 1385 120, 1440 120;
+                    M0 120 C 130 50, 270 190, 400 120 C 500 75, 560 75, 620 120 C 1000 -20, 460 -20, 820 120 C 950 175, 1090 65, 1210 120 C 1330 165, 1385 120, 1440 120" />
         </path>
       </svg>
     </div>
     <p class="how__steps center">Shadow your team. Find the biggest win. Build it fast. Hand it over.</p>
   </section>
 
-  <!-- ===== BIG CTA ===== -->
-  <section class="cta" id="contact">
-    <div class="wrap cta__inner">
-      <h2 class="cta__title">Got a niggle?</h2>
-      <p class="cta__p">Tell me what's driving your team mad. First chat's free, no pitch.</p>
-      <a class="btn-dark magnetic" href="mailto:hello@niggle.work"><span>get in touch</span></a>
+  <!-- ===== CONTACT FORM (cursor glow, stronger) ===== -->
+  <section class="contact" id="contact">
+    <div class="contact__spot" aria-hidden="true"></div>
+    <div class="wrap contact__inner">
+      <p class="eyebrow center">get in touch</p>
+      <h2 class="contact__title">Got a niggle?</h2>
+      <p class="contact__p">Tell me what's driving your team mad. First chat's free, no pitch.</p>
+      <form class="niggleform" action="#" method="POST" novalidate>
+        <input name="name" required placeholder="your name" />
+        <input type="email" name="email" required placeholder="your email" />
+        <textarea name="niggle" rows="4" required placeholder="what's the niggle?"></textarea>
+        <button type="submit" class="formbtn magnetic"><span>send it over</span></button>
+      </form>
     </div>
   </section>
 

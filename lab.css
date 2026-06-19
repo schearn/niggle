@@ -40,8 +40,9 @@ body::after{content:"";position:fixed;inset:0;z-index:9;pointer-events:none;opac
 .lnav__links a:not(.dotcta)::after{content:"";position:absolute;left:0;bottom:-5px;width:100%;height:2px;background:var(--amber);transform:scaleX(0);transform-origin:right;transition:transform .3s cubic-bezier(.2,.7,.2,1)}
 .lnav__links a:not(.dotcta):hover::after{transform:scaleX(1);transform-origin:left}
 .dotcta{display:inline-flex;align-items:center;justify-content:center;height:44px;width:44px;border-radius:999px;background:var(--amber);color:var(--ink)!important;overflow:hidden;transition:width .4s cubic-bezier(.2,.7,.2,1)}
-.dotcta span{max-width:0;overflow:hidden;white-space:nowrap;opacity:0;font-family:var(--ff-head);font-weight:600;font-size:.9rem;transition:max-width .4s,opacity .3s}
-.dotcta:hover{width:170px}.dotcta:hover span{max-width:130px;opacity:1;padding:0 8px}
+.dotcta__ic{width:20px;height:20px;flex:0 0 auto}
+.dotcta span{max-width:0;overflow:hidden;white-space:nowrap;opacity:0;margin-left:0;font-family:var(--ff-head);font-weight:600;font-size:.9rem;transition:max-width .4s,opacity .3s,margin-left .4s}
+.dotcta:hover{width:188px}.dotcta:hover span{max-width:130px;opacity:1;margin-left:9px}
 
 /* ===== HERO ===== */
 .hero{position:relative;min-height:92vh;display:flex;align-items:center;overflow:hidden}
@@ -98,10 +99,19 @@ body::after{content:"";position:fixed;inset:0;z-index:9;pointer-events:none;opac
 .how__squiggle svg{width:100%;height:clamp(120px,18vw,200px);display:block}
 .how__steps{color:var(--oat);font-size:1.2rem;font-family:var(--ff-head);font-weight:500}
 
-/* ===== CTA ===== */
-.cta{background:var(--amber);color:var(--ink);padding:130px 0;text-align:center}
-.cta__title{font-size:clamp(3rem,9vw,7rem);color:var(--ink)}
-.cta__p{font-size:1.25rem;color:rgba(27,38,50,.8);margin:22px 0 38px}
+/* ===== CONTACT FORM (cursor glow, stronger than hero) ===== */
+.contact{position:relative;background:var(--ink);color:var(--cream);padding:130px 0;text-align:center;overflow:hidden}
+.contact__spot{position:absolute;inset:0;z-index:0;pointer-events:none;mix-blend-mode:screen;
+  background:radial-gradient(560px 560px at var(--cx,50%) var(--cy,40%), rgba(255,177,98,.6), rgba(255,177,98,.2) 38%, transparent 70%)}
+.contact__inner{position:relative;z-index:1;max-width:560px}
+.contact__title{font-size:clamp(2.8rem,8vw,5.5rem);color:var(--cream)}
+.contact__p{font-size:1.2rem;color:var(--oat);margin:18px 0 38px}
+.niggleform{display:grid;gap:14px;text-align:left}
+.niggleform input,.niggleform textarea{width:100%;background:rgba(255,255,255,.05);border:1.5px solid rgba(238,233,223,.22);border-radius:16px;padding:16px 18px;color:var(--cream);font-family:var(--ff-body);font-size:1rem;transition:border-color .2s,background .2s,box-shadow .2s;resize:vertical}
+.niggleform input::placeholder,.niggleform textarea::placeholder{color:rgba(238,233,223,.45)}
+.niggleform input:focus,.niggleform textarea:focus{outline:none;border-color:var(--amber);background:rgba(255,177,98,.07);box-shadow:0 0 0 4px rgba(255,177,98,.15)}
+.formbtn{justify-self:start;margin-top:6px;display:inline-flex;align-items:center;font-family:var(--ff-head);font-weight:600;background:var(--amber);color:var(--ink);border:none;padding:16px 34px;border-radius:999px;font-size:1.05rem;cursor:pointer;will-change:transform}
+.formdone{font-family:var(--ff-head);font-weight:600;font-size:1.4rem;color:var(--amber);padding:30px 0}
 .lfoot{background:var(--ink);color:var(--oat);display:flex;justify-content:space-between;padding:30px 32px;font-family:var(--ff-head);font-size:.9rem;border-top:1px solid rgba(255,255,255,.08)}
 
 /* reveal */

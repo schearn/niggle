@@ -1,4 +1,4 @@
-// niggle.work — small interactions
+// niggle.work, small interactions
 
 // Flag that JS is on (gates the scroll-reveal CSS so content is never hidden without JS)
 document.documentElement.classList.add('js');

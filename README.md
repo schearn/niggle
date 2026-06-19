@@ -1,18 +1,18 @@
 # niggle.work
 
-Brochure site for **Niggle** — small, bespoke software tools for small businesses.
+Brochure site for **Niggle**, small, bespoke software tools for small businesses.
 *Tiny fixes. Big difference.*
 
 A static, single-page site. No build step, no dependencies.
 
 ## Files
-- `index.html` — the page
-- `styles.css` — styling (palette + type as CSS variables)
-- `script.js` — mobile nav + the before/after squiggle animation
-- `favicon.svg` — the "n" mark with the orange dot
+- `index.html`, the page
+- `styles.css`, styling (palette + type as CSS variables)
+- `script.js`, mobile nav + the before/after squiggle animation
+- `favicon.svg`, the "n" mark with the orange dot
 
 ## Brand
-- **Fonts:** Space Grotesk (headings), Inter (body) — loaded from Google Fonts
+- **Fonts:** Space Grotesk (headings), Inter (body), loaded from Google Fonts
 - **Palette:**
   | role | name | hex |
   |---|---|---|
@@ -30,5 +30,5 @@ python3 -m http.server 8000
 ```
 
 ## Deploy
-Designed for GitHub Pages — push to a repo and enable Pages on the default branch
+Designed for GitHub Pages, push to a repo and enable Pages on the default branch
 (root). Point the `niggle.work` domain at it via a `CNAME` file when ready.

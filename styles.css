@@ -1,15 +1,15 @@
 /* ============================================================
-   niggle.work — brand: bold, witty, precise
+   niggle.work, brand: bold, witty, precise
    ============================================================ */
 
 :root {
   /* palette */
-  --cream:      #EEE9DF;  /* Palladian — canvas */
-  --oatmeal:    #C9C1B1;  /* Oatmeal — muted / borders */
-  --ink:        #1B2632;  /* Abyssal — primary ink / dark */
-  --slate:      #2C3B4D;  /* Blue Fantastic — secondary dark */
-  --amber:      #FFB162;  /* Burning Flame — primary accent */
-  --terracotta: #A35139;  /* Truffle Trouble — sparing accent */
+  --cream:      #EEE9DF;  /* Palladian, canvas */
+  --oatmeal:    #C9C1B1;  /* Oatmeal, muted / borders */
+  --ink:        #1B2632;  /* Abyssal, primary ink / dark */
+  --slate:      #2C3B4D;  /* Blue Fantastic, secondary dark */
+  --amber:      #FFB162;  /* Burning Flame, primary accent */
+  --terracotta: #A35139;  /* Truffle Trouble, sparing accent */
 
   --ink-soft: rgba(27, 38, 50, 0.72);
   --cream-soft: rgba(238, 233, 223, 0.72);
@@ -410,7 +410,7 @@ a { color: inherit; text-decoration: none; }
 }
 
 /* ============================================================
-   ENHANCEMENTS — texture, motion, micro-interactions
+   ENHANCEMENTS, texture, motion, micro-interactions
    ============================================================ */
 
 /* --- warm grain texture over the whole page (very subtle) --- */

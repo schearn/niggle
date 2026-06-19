@@ -1,12 +1,22 @@
 // niggle UI lab — interactions
 
-// 1. Cursor spotlight on hero
+// 1. Cursor spotlight on hero + "lit text" reveal under the cursor
 const hero = document.querySelector('.hero');
 const spot = document.querySelector('.spotlight');
+const lit = document.querySelector('.hero__title.lit');
+const titlefx = document.querySelector('.titlefx');
 hero.addEventListener('pointermove', (e) => {
   const r = hero.getBoundingClientRect();
   spot.style.setProperty('--mx', `${e.clientX - r.left}px`);
   spot.style.setProperty('--my', `${e.clientY - r.top}px`);
+  if (lit && titlefx) {
+    const tr = titlefx.getBoundingClientRect();
+    lit.style.setProperty('--tx', `${e.clientX - tr.left}px`);
+    lit.style.setProperty('--ty', `${e.clientY - tr.top}px`);
+  }
+});
+hero.addEventListener('pointerleave', () => {
+  if (lit) { lit.style.setProperty('--tx', '-999px'); lit.style.setProperty('--ty', '-999px'); }
 });
 
 // 2. Magnetic buttons

@@ -53,11 +53,16 @@ body::after{content:"";position:fixed;inset:0;z-index:9;pointer-events:none;opac
     radial-gradient(40% 40% at 15% 75%, #6b3a2a, transparent 70%);
   animation:drift 18s ease-in-out infinite alternate}
 @keyframes drift{0%{transform:translate(0,0) scale(1)}50%{transform:translate(4%,-3%) scale(1.12)}100%{transform:translate(-3%,4%) scale(1.05)}}
-.spotlight{position:absolute;inset:0;z-index:1;pointer-events:none;background:radial-gradient(260px 260px at var(--mx,50%) var(--my,40%), rgba(255,177,98,.22), transparent 70%)}
+.spotlight{position:absolute;inset:0;z-index:1;pointer-events:none;mix-blend-mode:screen;
+  background:radial-gradient(440px 440px at var(--mx,50%) var(--my,40%), rgba(255,177,98,.5), rgba(255,177,98,.16) 42%, transparent 72%)}
 .hero__inner{position:relative;z-index:2;width:100%;max-width:1140px;margin-inline:auto;padding:80px 32px 0}
 .hero__kicker{font-family:var(--ff-head);font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:var(--oat);font-size:.85rem;margin-bottom:22px}
+.titlefx{position:relative;display:inline-block}
 .hero__title{font-size:clamp(3.5rem,14vw,11rem);color:var(--cream);letter-spacing:-0.05em}
 .hero__title .line{display:block}
+.hero__title.lit{position:absolute;top:0;left:0;color:var(--amber);pointer-events:none;
+  -webkit-mask-image:radial-gradient(circle 210px at var(--tx,-999px) var(--ty,-999px),#000 0%,#000 42%,transparent 78%);
+          mask-image:radial-gradient(circle 210px at var(--tx,-999px) var(--ty,-999px),#000 0%,#000 42%,transparent 78%)}
 .hl{color:var(--amber)}
 .dot{display:inline-block;color:var(--amber);animation:pulse 2.4s ease-in-out infinite}
 @keyframes pulse{0%,100%{transform:translateY(0)}50%{transform:translateY(-.12em)}}

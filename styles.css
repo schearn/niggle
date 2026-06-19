@@ -516,11 +516,27 @@ body::before {
 .honesty li { transition: transform .2s ease, color .2s ease; }
 .honesty__col:first-child li:hover { transform: translateX(6px); color: var(--terracotta); }
 
+/* --- header logo (big, top-left) --- */
+.brand { display: inline-flex; align-items: center; }
+.brand__img {
+  height: 46px;
+  width: auto;
+  display: block;
+  transition: transform .25s cubic-bezier(.34,1.56,.64,1);
+}
+.brand:hover .brand__img { transform: translateY(-2px); }
+.nav__inner { height: 80px; }
+@media (max-width: 680px) {
+  .brand__img { height: 34px; }
+  .nav__inner { height: 68px; }
+  .nav__links { top: 68px; }
+}
+
 /* reduced motion */
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
   .squiggle .draw { animation: none !important; stroke-dashoffset: 0 !important; }
-  .btn:hover, .card:hover, .step:hover { transform: none; }
+  .btn:hover, .card:hover, .step:hover, .brand:hover .brand__img { transform: none; }
   .marquee__track { animation: none; }
   .wm-i::after { animation: none; }
   .js .reveal, .js .reveal[data-stagger] > * { opacity: 1 !important; transform: none !important; }

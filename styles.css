@@ -130,6 +130,7 @@ body::after{content:"";position:fixed;inset:0;z-index:9;pointer-events:none;opac
 .why__inner{max-width:900px}
 .why__title{font-size:clamp(2rem,5vw,3.6rem);color:var(--ink);letter-spacing:-0.02em;line-height:1.06}
 .why__p{font-size:1.2rem;line-height:1.6;color:rgba(27,38,50,.82);margin-top:22px;max-width:60ch}
+.why__roi{font-family:var(--ff-head);font-weight:600;font-size:clamp(1.3rem,2.5vw,1.7rem);color:var(--ink);margin-top:30px;letter-spacing:-0.01em;max-width:60ch}
 .why ::selection{background:var(--ink);color:#fff}
 .why ::-moz-selection{background:var(--ink);color:#fff}
 
@@ -145,6 +146,8 @@ body::after{content:"";position:fixed;inset:0;z-index:9;pointer-events:none;opac
 .step:hover .step__num{color:var(--amber)}
 .step h3{font-size:1.1rem;margin-top:6px;color:var(--cream)}
 .step p{color:var(--oat);margin-top:8px;font-size:.92rem;line-height:1.5}
+.how__need{text-align:center;max-width:54ch;margin:48px auto 0;padding-inline:32px;color:var(--oat);font-size:1.1rem;line-height:1.6}
+.how__need strong{color:var(--amber);font-weight:600}
 
 /* ===================== QUOTE ===================== */
 .quote{background:var(--cream);color:var(--ink);padding:100px 0}

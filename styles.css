@@ -16,6 +16,7 @@ a{color:inherit;text-decoration:none}
 .center{text-align:center}
 .eyebrow{font-family:var(--ff-head);font-weight:500;color:var(--amber);letter-spacing:.12em;text-transform:uppercase;font-size:.8rem;margin-bottom:18px}
 .eyebrow--light{color:var(--terra)}
+.eyebrow--ink{color:var(--ink)}
 
 /* a11y: screen-reader-only, skip link, keyboard focus */
 .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
@@ -123,6 +124,14 @@ body::after{content:"";position:fixed;inset:0;z-index:9;pointer-events:none;opac
 .wontdo{list-style:none;display:flex;flex-wrap:wrap;gap:12px}
 .wontdo li{font-family:var(--ff-head);font-weight:500;font-size:1rem;padding:10px 20px;border-radius:999px;border:1px dashed rgba(27,38,50,.4);color:rgba(27,38,50,.72)}
 .wontdo li::before{content:"✕";margin-right:9px;color:var(--terra);font-weight:700}
+
+/* ===================== WHY NOW ===================== */
+.why{background:var(--amber);color:var(--ink);padding:110px 0;scroll-margin-top:84px}
+.why__inner{max-width:900px}
+.why__title{font-size:clamp(2rem,5vw,3.6rem);color:var(--ink);letter-spacing:-0.02em;line-height:1.06}
+.why__p{font-size:1.2rem;line-height:1.6;color:rgba(27,38,50,.82);margin-top:22px;max-width:60ch}
+.why ::selection{background:var(--ink);color:#fff}
+.why ::-moz-selection{background:var(--ink);color:#fff}
 
 /* ===================== HOW IT WORKS ===================== */
 .how{background:var(--ink);padding:110px 0 120px;overflow:hidden;scroll-margin-top:84px}

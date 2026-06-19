@@ -45,7 +45,7 @@ if (!reduceMotion) {
 const io = new IntersectionObserver((entries, obs) => {
   entries.forEach((e) => { if (e.isIntersecting) { e.target.classList.add('in'); obs.unobserve(e.target); } });
 }, { threshold: 0.15, rootMargin: '0px 0px -8% 0px' });
-document.querySelectorAll('.band__item, .eyebrow, .h2, .build__lead, .cloud, .build__foot, .drawline, .how__title, .step, .quote blockquote, .about__copy, .about__side, .contact__title, .contact__p, .formcard')
+document.querySelectorAll('.band__item, .eyebrow, .h2, .build__lead, .cloud, .build__foot, .drawline, .why__title, .why__p, .how__title, .step, .quote blockquote, .about__copy, .about__side, .contact__title, .contact__p, .formcard')
   .forEach((el) => { el.classList.add('reveal'); io.observe(el); });
 
 // Contact form: sends via Web3Forms (emails land privately in the configured inbox)

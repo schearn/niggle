@@ -181,7 +181,11 @@
       <h2 class="contact__title">Got a niggle?</h2>
       <p class="contact__p">Tell me what's driving your team mad. First chat's free, no pitch.</p>
       <div class="formcard"><div class="formcard__inner">
-        <form class="niggleform" action="#" method="POST" novalidate>
+        <form class="niggleform" action="https://api.web3forms.com/submit" method="POST" novalidate>
+          <input type="hidden" name="access_key" value="0a7cb916-6128-47e5-9170-d5fccf1d9f86" />
+          <input type="hidden" name="subject" value="New niggle enquiry from niggle.work" />
+          <input type="hidden" name="from_name" value="niggle.work" />
+          <input type="checkbox" name="botcheck" class="hp" tabindex="-1" autocomplete="off" aria-hidden="true" />
           <input name="name" required placeholder="your name" />
           <input type="email" name="email" required placeholder="your email" />
           <textarea name="niggle" rows="4" required placeholder="what's the niggle?"></textarea>

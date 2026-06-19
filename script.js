@@ -45,13 +45,36 @@ const io = new IntersectionObserver((entries, obs) => {
 document.querySelectorAll('.band__item, .eyebrow, .h2, .build__lead, .cloud, .build__foot, .drawline, .how__title, .step, .quote blockquote, .about__copy, .about__side, .contact__title, .contact__p, .formcard')
   .forEach((el) => { el.classList.add('reveal'); io.observe(el); });
 
-// Contact form demo submit
+// Contact form — sends via Web3Forms (emails land privately in the configured inbox)
 const form = document.querySelector('.niggleform');
 if (form) {
-  form.addEventListener('submit', (e) => {
+  form.addEventListener('submit', async (e) => {
     e.preventDefault();
     if (!form.checkValidity()) { form.reportValidity(); return; }
-    form.innerHTML = '<p class="formdone">Nice one — I\'ll be in touch shortly.</p>';
+    const btn = form.querySelector('.formbtn');
+    const btnLabel = btn && btn.querySelector('span');
+    if (btnLabel) btnLabel.textContent = 'sending…';
+    if (btn) btn.disabled = true;
+    try {
+      const res = await fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        headers: { Accept: 'application/json' },
+        body: new FormData(form),
+      });
+      const data = await res.json();
+      if (data.success) {
+        form.innerHTML = '<p class="formdone">Nice one — I\'ll be in touch shortly.</p>';
+      } else {
+        throw new Error(data.message || 'Submission failed');
+      }
+    } catch (err) {
+      if (btn) btn.disabled = false;
+      if (btnLabel) btnLabel.textContent = 'send it over';
+      if (!form.querySelector('.formerr')) {
+        form.insertAdjacentHTML('beforeend',
+          '<p class="formerr">That didn\'t send — email <a href="mailto:hello@niggle.work">hello@niggle.work</a> directly?</p>');
+      }
+    }
   });
 }
 

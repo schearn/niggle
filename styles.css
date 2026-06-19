@@ -49,7 +49,7 @@ body::after{content:"";position:fixed;inset:0;z-index:9;pointer-events:none;opac
 .nav__toggle span{width:24px;height:2px;background:var(--cream);border-radius:2px}
 
 /* ===================== HERO ===================== */
-.hero{position:relative;min-height:92vh;display:flex;align-items:center;overflow:hidden}
+.hero{position:relative;min-height:84vh;display:flex;align-items:center;overflow:hidden}
 .aurora{position:absolute;inset:-30%;z-index:0;filter:blur(70px);opacity:.85;
   background:
     radial-gradient(40% 40% at 25% 35%, var(--terra), transparent 70%),
@@ -62,8 +62,12 @@ body::after{content:"";position:fixed;inset:0;z-index:9;pointer-events:none;opac
   background:radial-gradient(440px 440px at var(--mx,50%) var(--my,40%), rgba(255,177,98,.5), rgba(255,177,98,.16) 42%, transparent 72%)}
 .hero__inner{position:relative;z-index:2;width:100%;max-width:1140px;margin-inline:auto;padding:80px 32px 0}
 .hero__kicker{font-family:var(--ff-head);font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:var(--oat);font-size:.85rem;margin-bottom:22px}
-.hero__title{font-size:clamp(3.5rem,14vw,11rem);color:var(--cream);letter-spacing:-0.05em}
+.hero__title{font-size:clamp(3.5rem,13vw,8rem);color:var(--cream);letter-spacing:-0.05em}
 .hero__title .line{display:block}
+@media (min-width:1024px){
+  .hero__title{font-size:clamp(4.5rem,7vw,7rem)}
+  .hero__title .line{display:inline}
+}
 .hl{color:var(--amber)}
 .dot{display:inline-block;color:var(--amber);animation:pulse 2.4s ease-in-out infinite}
 @keyframes pulse{0%,100%{transform:translateY(0)}50%{transform:translateY(-.12em)}}

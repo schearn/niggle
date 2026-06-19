@@ -78,10 +78,17 @@ body::after{content:"";position:fixed;inset:0;z-index:9;pointer-events:none;opac
 
 /* ===================== FEATURE BAND ===================== */
 .band{background:var(--slate)}
-.band__grid{display:grid;grid-template-columns:repeat(3,1fr);gap:40px;padding:56px 32px}
-.band__item h3{font-size:1.2rem;margin-top:12px;color:var(--cream)}
+.band__grid{display:grid;grid-template-columns:repeat(3,1fr);gap:44px;padding:64px 32px}
+.band__item h3{font-size:1.25rem;margin-top:18px;color:var(--cream)}
 .band__item p{color:var(--oat);margin-top:8px;font-size:.98rem}
-.band__mark{display:inline-flex;align-items:center;justify-content:center;width:38px;height:38px;border-radius:50%;background:var(--amber);color:var(--ink);font-weight:700}
+.band__mark{display:inline-flex;align-items:center;justify-content:center;width:64px;height:64px;border-radius:50%;background:var(--amber);color:var(--ink);transition:box-shadow .3s ease}
+.band__mark svg{width:30px;height:30px;transition:transform .35s cubic-bezier(.34,1.56,.64,1)}
+.band__item:nth-child(1) .band__mark{animation:floaty 3.4s ease-in-out infinite}
+.band__item:nth-child(2) .band__mark{animation:floaty 3.4s ease-in-out infinite .5s}
+.band__item:nth-child(3) .band__mark{animation:floaty 3.4s ease-in-out infinite 1s}
+@keyframes floaty{0%,100%{transform:translateY(0)}50%{transform:translateY(-7px)}}
+.band__item:hover .band__mark{box-shadow:0 12px 30px -8px rgba(255,177,98,.65)}
+.band__item:hover .band__mark svg{transform:scale(1.22) rotate(-10deg)}
 
 /* ===================== WHAT I BUILD ===================== */
 .build{background:var(--cream);color:var(--ink);padding:120px 0;scroll-margin-top:84px}
@@ -188,7 +195,7 @@ body::after{content:"";position:fixed;inset:0;z-index:9;pointer-events:none;opac
 }
 @media (prefers-reduced-motion:reduce){
   html{scroll-behavior:auto}
-  .aurora,.dot,.scrollcue span,.formcard{animation:none}
+  .aurora,.dot,.scrollcue span,.formcard,.band__mark{animation:none}
   .how__squiggle animate{display:none}
   .btn-primary:hover,.step:hover,.cloud li:hover,.brand:hover img{transform:none}
   .js .reveal{opacity:1;transform:none}

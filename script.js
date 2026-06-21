@@ -45,8 +45,25 @@ if (!reduceMotion) {
 const io = new IntersectionObserver((entries, obs) => {
   entries.forEach((e) => { if (e.isIntersecting) { e.target.classList.add('in'); obs.unobserve(e.target); } });
 }, { threshold: 0.15, rootMargin: '0px 0px -8% 0px' });
-document.querySelectorAll('.band__item, .eyebrow, .h2, .build__lead, .cloud, .build__foot, .drawline, .why__title, .why__p, .why__roi, .how__title, .step, .how__need, .quote blockquote, .about__copy, .about__side, .contact__title, .contact__p, .formcard')
+document.querySelectorAll('.band__item, .eyebrow, .h2, .build__lead, .build__foot, .drawline, .why__title, .why__p, .why__roi, .how__title, .step, .how__need, .quote blockquote, .about__copy, .about__side, .contact__title, .contact__p, .formcard')
   .forEach((el) => { el.classList.add('reveal'); io.observe(el); });
+
+// "what I build" pills: scatter in, then assemble into the grid on scroll-in
+const cloud = document.querySelector('.cloud');
+if (cloud && !reduceMotion) {
+  cloud.querySelectorAll('li').forEach((li, i) => {
+    li.style.setProperty('--fx', ((Math.random() * 2 - 1) * 46).toFixed(1) + 'px');
+    li.style.setProperty('--fy', (44 + Math.random() * 70).toFixed(1) + 'px');
+    li.style.setProperty('--fr', ((Math.random() * 2 - 1) * 20).toFixed(1) + 'deg');
+    li.style.setProperty('--rest', ((Math.random() * 2 - 1) * 2.4).toFixed(1) + 'deg');
+    li.style.transitionDelay = (i * 0.045).toFixed(3) + 's';
+  });
+  cloud.classList.add('cloud--fall');
+  const cloudIO = new IntersectionObserver((entries, obs) => {
+    entries.forEach((e) => { if (e.isIntersecting) { cloud.classList.add('cloud--settled'); obs.disconnect(); } });
+  }, { threshold: 0.25 });
+  cloudIO.observe(cloud);
+}
 
 // Contact form: sends via Web3Forms (emails land privately in the configured inbox)
 const form = document.querySelector('.niggleform');

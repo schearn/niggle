@@ -114,8 +114,8 @@ body::after{content:"";position:fixed;inset:0;z-index:9;pointer-events:none;opac
 .cloud li:nth-child(5n+5){background:var(--oat);border-color:var(--oat);color:var(--ink)}
 .cloud li:hover{transform:translateY(-3px) rotate(0)}
 /* fall + build: pills drop in scattered, then assemble into the grid on scroll-in */
-.cloud--fall li{opacity:0;transform:translate(var(--fx,0),var(--fy,0)) rotate(var(--fr,0));transition:transform .85s cubic-bezier(.18,.7,.2,1),opacity .5s ease;will-change:transform,opacity}
-.cloud--fall.cloud--settled li{opacity:1;transform:rotate(var(--rest,0))}
+.cloud--fall li{transform:translate(var(--fx,0),var(--fy,0)) rotate(var(--fr,0));transition:transform .9s cubic-bezier(.2,.85,.25,1);will-change:transform}
+.cloud--fall.cloud--settled li{transform:rotate(var(--rest,0))}
 .cloud--fall li:hover{transition:transform .2s ease;transform:translateY(-4px) rotate(0)}
 .cloud li.ghostpill{background:transparent;border-style:dashed;border-color:rgba(27,38,50,.4);color:rgba(27,38,50,.66)}
 .build__foot{margin-top:42px;font-size:1.2rem;line-height:1.6;max-width:60ch;color:rgba(27,38,50,.8)}

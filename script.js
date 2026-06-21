@@ -52,16 +52,22 @@ document.querySelectorAll('.band__item, .eyebrow, .h2, .build__lead, .build__foo
 const cloud = document.querySelector('.cloud');
 if (cloud && !reduceMotion) {
   cloud.querySelectorAll('li').forEach((li, i) => {
-    li.style.setProperty('--fx', ((Math.random() * 2 - 1) * 46).toFixed(1) + 'px');
-    li.style.setProperty('--fy', (44 + Math.random() * 70).toFixed(1) + 'px');
-    li.style.setProperty('--fr', ((Math.random() * 2 - 1) * 20).toFixed(1) + 'deg');
+    li.style.setProperty('--fx', ((Math.random() * 2 - 1) * 44).toFixed(1) + 'px');
+    li.style.setProperty('--fy', (8 + Math.random() * 48).toFixed(1) + 'px');
+    li.style.setProperty('--fr', ((Math.random() * 2 - 1) * 33).toFixed(1) + 'deg');
     li.style.setProperty('--rest', ((Math.random() * 2 - 1) * 2.4).toFixed(1) + 'deg');
-    li.style.transitionDelay = (i * 0.045).toFixed(3) + 's';
+    li.style.transitionDelay = (i * 0.04).toFixed(3) + 's';
   });
   cloud.classList.add('cloud--fall');
   const cloudIO = new IntersectionObserver((entries, obs) => {
-    entries.forEach((e) => { if (e.isIntersecting) { cloud.classList.add('cloud--settled'); obs.disconnect(); } });
-  }, { threshold: 0.25 });
+    entries.forEach((e) => {
+      if (e.isIntersecting) {
+        obs.disconnect();
+        // let them sit jumbled for a beat, then assemble
+        setTimeout(() => cloud.classList.add('cloud--settled'), 950);
+      }
+    });
+  }, { threshold: 0.3 });
   cloudIO.observe(cloud);
 }
 

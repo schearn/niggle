@@ -1,6 +1,9 @@
 .DS_Store
 .claude/
 
+# Internal handover notes — local only, never publish (public repo)
+CONTEXT.md
+
 # Secrets — never commit these
 .env
 .env.*

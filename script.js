@@ -120,3 +120,117 @@ function updateSpy() {
 }
 window.addEventListener('scroll', () => { if (!spyTick) { spyTick = true; requestAnimationFrame(updateSpy); } }, { passive: true });
 updateSpy();
+
+// Hero WebGL molten background (hand-written, no dependencies).
+// Falls back to the CSS aurora if WebGL is unavailable or the shader fails to build.
+(function initHeroShader() {
+  const canvas = document.querySelector('.hero__gl');
+  if (!canvas || !hero) return;
+  const gl = canvas.getContext('webgl') || canvas.getContext('experimental-webgl');
+  if (!gl) { canvas.style.display = 'none'; return; }
+
+  const vsrc = 'attribute vec2 p;void main(){gl_Position=vec4(p,0.0,1.0);}';
+  const fsrc = [
+    'precision highp float;',
+    'uniform float uTime; uniform vec2 uResolution; uniform vec2 uMouse;',
+    'vec3 mod289(vec3 x){return x-floor(x*(1.0/289.0))*289.0;}',
+    'vec2 mod289(vec2 x){return x-floor(x*(1.0/289.0))*289.0;}',
+    'vec3 permute(vec3 x){return mod289(((x*34.0)+1.0)*x);}',
+    'float snoise(vec2 v){',
+    ' const vec4 C=vec4(0.211324865405187,0.366025403784439,-0.577350269189626,0.024390243902439);',
+    ' vec2 i=floor(v+dot(v,C.yy)); vec2 x0=v-i+dot(i,C.xx);',
+    ' vec2 i1=(x0.x>x0.y)?vec2(1.0,0.0):vec2(0.0,1.0);',
+    ' vec4 x12=x0.xyxy+C.xxzz; x12.xy-=i1; i=mod289(i);',
+    ' vec3 p=permute(permute(i.y+vec3(0.0,i1.y,1.0))+i.x+vec3(0.0,i1.x,1.0));',
+    ' vec3 m=max(0.5-vec3(dot(x0,x0),dot(x12.xy,x12.xy),dot(x12.zw,x12.zw)),0.0); m=m*m; m=m*m;',
+    ' vec3 x=2.0*fract(p*C.www)-1.0; vec3 h=abs(x)-0.5; vec3 ox=floor(x+0.5); vec3 a0=x-ox;',
+    ' m*=1.79284291400159-0.85373472095314*(a0*a0+h*h);',
+    ' vec3 g; g.x=a0.x*x0.x+h.x*x0.y; g.yz=a0.yz*x12.xz+h.yz*x12.yw; return 130.0*dot(m,g);',
+    '}',
+    'float fbm(vec2 p){float v=0.0,a=0.5; for(int i=0;i<5;i++){v+=a*snoise(p);p*=2.0;a*=0.5;} return v;}',
+    'void main(){',
+    ' vec2 p=(gl_FragCoord.xy-0.5*uResolution)/uResolution.y; float t=uTime*0.06;',
+    ' vec2 q=vec2(fbm(p+vec2(0.0,t)),fbm(p+vec2(5.2,1.3)-t));',
+    ' vec2 r=vec2(fbm(p+2.0*q+vec2(1.7,9.2)+0.15*t),fbm(p+2.0*q+vec2(8.3,2.8)-0.13*t));',
+    ' float n=fbm(p+2.4*r+0.1*t); n=n*0.5+0.5;',
+    ' vec2 m=(uMouse-0.5*uResolution)/uResolution.y; float glow=smoothstep(0.55,0.0,length(p-m));',
+    ' vec3 ink=vec3(0.106,0.149,0.196); vec3 slate=vec3(0.173,0.231,0.302);',
+    ' vec3 terra=vec3(0.639,0.318,0.224); vec3 amber=vec3(1.0,0.694,0.384); vec3 cream=vec3(0.933,0.914,0.875);',
+    ' vec3 col=mix(ink,slate,smoothstep(0.15,0.6,n));',
+    ' col=mix(col,terra,smoothstep(0.5,0.82,n+0.12*length(r)));',
+    ' col=mix(col,amber,smoothstep(0.74,0.97,n)+0.45*glow);',
+    ' col+=cream*smoothstep(0.92,1.0,n)*0.35;',
+    ' float gr=fract(sin(dot(gl_FragCoord.xy,vec2(12.9898,78.233)))*43758.5453); col+=(gr-0.5)*0.03;',
+    ' col*=1.0-0.28*length(p);',
+    ' gl_FragColor=vec4(col,1.0);',
+    '}'
+  ].join('\n');
+
+  function compile(type, src) {
+    const s = gl.createShader(type);
+    gl.shaderSource(s, src); gl.compileShader(s);
+    if (!gl.getShaderParameter(s, gl.COMPILE_STATUS)) { console.error(gl.getShaderInfoLog(s)); return null; }
+    return s;
+  }
+  const vs = compile(gl.VERTEX_SHADER, vsrc), fs = compile(gl.FRAGMENT_SHADER, fsrc);
+  if (!vs || !fs) { canvas.style.display = 'none'; return; }
+  const prog = gl.createProgram();
+  gl.attachShader(prog, vs); gl.attachShader(prog, fs); gl.linkProgram(prog);
+  if (!gl.getProgramParameter(prog, gl.LINK_STATUS)) { console.error(gl.getProgramInfoLog(prog)); canvas.style.display = 'none'; return; }
+  gl.useProgram(prog);
+
+  const buf = gl.createBuffer();
+  gl.bindBuffer(gl.ARRAY_BUFFER, buf);
+  gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([-1, -1, 3, -1, -1, 3]), gl.STATIC_DRAW);
+  const loc = gl.getAttribLocation(prog, 'p');
+  gl.enableVertexAttribArray(loc); gl.vertexAttribPointer(loc, 2, gl.FLOAT, false, 0, 0);
+  const uTime = gl.getUniformLocation(prog, 'uTime');
+  const uRes = gl.getUniformLocation(prog, 'uResolution');
+  const uMouse = gl.getUniformLocation(prog, 'uMouse');
+
+  const dpr = Math.min(window.devicePixelRatio || 1, reduceMotion ? 1 : 1.5);
+  let W = 1, H = 1;
+  function resize() {
+    const r = canvas.getBoundingClientRect();
+    W = Math.max(1, Math.round(r.width * dpr));
+    H = Math.max(1, Math.round(r.height * dpr));
+    canvas.width = W; canvas.height = H; gl.viewport(0, 0, W, H);
+  }
+  resize();
+  window.addEventListener('resize', resize);
+
+  const mouse = { x: 0.5, y: 0.58 }, target = { x: 0.5, y: 0.58 };
+  hero.addEventListener('pointermove', (e) => {
+    const r = hero.getBoundingClientRect();
+    target.x = (e.clientX - r.left) / r.width;
+    target.y = 1 - (e.clientY - r.top) / r.height; // flip Y to match gl_FragCoord
+  });
+
+  function draw(tSeconds) {
+    gl.uniform1f(uTime, tSeconds);
+    gl.uniform2f(uRes, W, H);
+    gl.uniform2f(uMouse, mouse.x * W, mouse.y * H);
+    gl.drawArrays(gl.TRIANGLES, 0, 3);
+  }
+
+  if (reduceMotion) {
+    draw(14.0); // one calm static frame, no animation
+    return;
+  }
+
+  let raf = null;
+  function frame(ms) {
+    mouse.x += (target.x - mouse.x) * 0.06;
+    mouse.y += (target.y - mouse.y) * 0.06;
+    draw(ms * 0.001);
+    raf = requestAnimationFrame(frame);
+  }
+  // Only animate while the hero is on screen (saves GPU/battery once scrolled past)
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach((e) => {
+      if (e.isIntersecting && raf === null) raf = requestAnimationFrame(frame);
+      else if (!e.isIntersecting && raf !== null) { cancelAnimationFrame(raf); raf = null; }
+    });
+  }, { threshold: 0 });
+  io.observe(hero);
+})();

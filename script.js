@@ -45,7 +45,7 @@ if (!reduceMotion) {
 const io = new IntersectionObserver((entries, obs) => {
   entries.forEach((e) => { if (e.isIntersecting) { e.target.classList.add('in'); obs.unobserve(e.target); } });
 }, { threshold: 0.15, rootMargin: '0px 0px -8% 0px' });
-document.querySelectorAll('.band__item, .eyebrow, .h2, .build__lead, .build__foot, .drawline, .why__title, .why__p, .why__roi, .how__title, .step, .how__need, .quote blockquote, .about__copy, .about__side, .contact__title, .contact__p, .formcard')
+document.querySelectorAll('.band__item, .eyebrow, .h2, .build__lead, .build__foot, .drawline, .why__title, .why__p, .why__roi, .pricing__title, .pricing__lead, .tl__item, .pricing__callout, .pricing__value, .quote blockquote, .about__copy, .about__side, .contact__title, .contact__p, .formcard')
   .forEach((el) => { el.classList.add('reveal'); io.observe(el); });
 
 // "what I build" pills: scatter in, then assemble into the grid on scroll-in
@@ -105,7 +105,7 @@ if (form) {
 }
 
 // Scroll-spy: reflect the section in view in the URL hash
-const spyEls = ['hero', 'build', 'how', 'about', 'contact']
+const spyEls = ['hero', 'build', 'pricing', 'about', 'contact']
   .map((id) => document.getElementById(id))
   .filter(Boolean);
 let currentHash = location.hash;

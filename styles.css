@@ -32,8 +32,8 @@ a:focus-visible,button:focus-visible{outline:3px solid var(--cream);outline-offs
 .eyebrow::selection,.cloud li::selection,.wontdo li::selection{background:var(--ink);color:var(--amber)}
 .eyebrow::-moz-selection,.cloud li::-moz-selection,.wontdo li::-moz-selection{background:var(--ink);color:var(--amber)}
 /* dark sections → white highlight, navy text (overrides the above) */
-.hero ::selection,.band ::selection,.how ::selection,.about ::selection,.contact ::selection,.lfoot ::selection{background:#fff;color:var(--ink)}
-.hero ::-moz-selection,.band ::-moz-selection,.how ::-moz-selection,.about ::-moz-selection,.contact ::-moz-selection,.lfoot ::-moz-selection{background:#fff;color:var(--ink)}
+.hero ::selection,.band ::selection,.pricing ::selection,.about ::selection,.contact ::selection,.lfoot ::selection{background:#fff;color:var(--ink)}
+.hero ::-moz-selection,.band ::-moz-selection,.pricing ::-moz-selection,.about ::-moz-selection,.contact ::-moz-selection,.lfoot ::-moz-selection{background:#fff;color:var(--ink)}
 
 /* grain */
 body::after{content:"";position:fixed;inset:0;z-index:9;pointer-events:none;opacity:.05;
@@ -136,20 +136,35 @@ body::after{content:"";position:fixed;inset:0;z-index:9;pointer-events:none;opac
 .why ::selection{background:var(--ink);color:#fff}
 .why ::-moz-selection{background:var(--ink);color:#fff}
 
-/* ===================== HOW IT WORKS ===================== */
-.how{background:var(--ink);padding:110px 0 120px;overflow:hidden;scroll-margin-top:84px}
-.how__title{font-size:clamp(2.4rem,7vw,5rem);color:var(--cream);text-align:center;letter-spacing:-0.04em}
-.how__squiggle{width:100%;margin:46px 0;line-height:0}
-.how__squiggle svg{width:100%;height:clamp(120px,16vw,190px);display:block}
-.steps{list-style:none;display:grid;grid-template-columns:repeat(5,1fr);gap:18px;max-width:1140px;margin:10px auto 0;padding-inline:32px}
-.step{background:var(--slate);border-radius:16px;padding:24px 20px;border-top:3px solid var(--amber);transition:transform .2s ease}
-.step:hover{transform:translateY(-4px)}
-.step__num{font-family:var(--ff-head);font-weight:700;font-size:1.6rem;color:var(--oat)}
-.step:hover .step__num{color:var(--amber)}
-.step h3{font-size:1.1rem;margin-top:6px;color:var(--cream)}
-.step p{color:var(--oat);margin-top:8px;font-size:.92rem;line-height:1.5}
-.how__need{text-align:center;max-width:54ch;margin:48px auto 0;padding-inline:32px;color:var(--oat);font-size:1.1rem;line-height:1.6}
-.how__need strong{color:var(--amber);font-weight:600}
+/* ===================== PRICING ===================== */
+.pricing{background:var(--ink);padding:110px 0 120px;overflow:hidden;scroll-margin-top:84px}
+.pricing__title{font-size:clamp(2.4rem,7vw,5rem);color:var(--cream);text-align:center;letter-spacing:-0.04em}
+.pricing__lead{max-width:60ch;margin:22px auto 0;padding-inline:32px;text-align:center;color:var(--oat);font-size:1.15rem;line-height:1.6}
+.pricing__lead strong{color:var(--amber);font-weight:600}
+.pricing__squiggle{width:100%;margin:34px 0 4px;line-height:0}
+.pricing__squiggle svg{width:100%;height:clamp(120px,16vw,190px);display:block}
+
+/* the timeline */
+.tl{list-style:none;position:relative;max-width:720px;margin:18px auto 0;padding:0 32px}
+.tl::before{content:"";position:absolute;left:58px;top:26px;bottom:26px;width:3px;background:linear-gradient(var(--amber),var(--terra));border-radius:3px}
+.tl__item{position:relative;display:grid;grid-template-columns:56px 1fr;gap:22px;align-items:start;padding:12px 0}
+.tl__num{position:relative;z-index:1;width:56px;height:56px;display:grid;place-items:center;border-radius:50%;background:var(--slate);border:3px solid var(--amber);color:var(--cream);font-family:var(--ff-head);font-weight:700;font-size:1.15rem}
+.tl__body{background:var(--slate);border-radius:16px;padding:20px 22px;border-top:3px solid var(--amber);transition:transform .2s ease}
+.tl__item:hover .tl__body{transform:translateY(-4px)}
+.tl__tag{display:inline-block;font-family:var(--ff-head);font-weight:600;font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;padding:4px 12px;border-radius:999px;background:rgba(255,255,255,.1);color:var(--oat);margin-bottom:10px}
+.tl__tag--free{background:var(--amber);color:var(--ink)}
+.tl__tag--paid{background:var(--terra);color:var(--cream)}
+.tl__h{font-size:1.2rem;color:var(--cream)}
+.tl__p{color:var(--oat);margin-top:8px;font-size:.98rem;line-height:1.6}
+.tl__p strong{color:var(--amber);font-weight:600}
+
+/* acquisition callout + value line */
+.pricing__callout{max-width:720px;margin:36px auto 0;padding:26px 28px;border-radius:18px;background:rgba(255,177,98,.08);border:1px solid rgba(255,177,98,.35)}
+.pricing__callout-h{font-size:1.2rem;color:var(--amber)}
+.pricing__callout-p{color:var(--cream);margin-top:8px;font-size:1rem;line-height:1.6}
+.pricing__callout-p strong{color:var(--amber);font-weight:600}
+.pricing__value{text-align:center;max-width:60ch;margin:40px auto 28px;padding-inline:32px;color:var(--cream);font-size:1.15rem;line-height:1.6;font-weight:500}
+.pricing__cta{margin-top:4px}
 
 /* ===================== QUOTE ===================== */
 .quote{background:var(--cream);color:var(--ink);padding:100px 0}
@@ -202,7 +217,6 @@ body::after{content:"";position:fixed;inset:0;z-index:9;pointer-events:none;opac
 /* ===================== RESPONSIVE ===================== */
 @media (max-width:900px){
   .band__grid{grid-template-columns:1fr;gap:24px}
-  .steps{grid-template-columns:repeat(2,1fr)}
   .about__grid{grid-template-columns:1fr;gap:40px}
 }
 @media (max-width:680px){
@@ -214,14 +228,17 @@ body::after{content:"";position:fixed;inset:0;z-index:9;pointer-events:none;opac
   .nav__links a:not(.dotcta){padding:10px 0;width:100%}
   .dotcta{width:auto;padding:0 22px;margin-top:8px}
   .dotcta span{max-width:none;opacity:1;margin-left:9px}
-  .steps{grid-template-columns:1fr}
+  .tl{padding:0 20px}
+  .tl__item{grid-template-columns:48px 1fr;gap:16px}
+  .tl__num{width:48px;height:48px;font-size:1rem}
+  .tl::before{left:42px}
   .hero__inner{padding-top:60px}
 }
 @media (prefers-reduced-motion:reduce){
   html{scroll-behavior:auto}
   .aurora,.dot,.scrollcue span,.formcard,.band__mark{animation:none}
-  .how__squiggle animate{display:none}
-  .btn-primary:hover,.step:hover,.cloud li:hover,.brand:hover img{transform:none}
+  .pricing__squiggle animate{display:none}
+  .btn-primary:hover,.tl__item:hover .tl__body,.cloud li:hover,.brand:hover img{transform:none}
   .cloud--fall li{opacity:1;transform:none;transition:none}
   .js .reveal{opacity:1;transform:none}
 }

@@ -1,0 +1,181 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="robots" content="noindex, nofollow" />
+  <title>niggle · shader prototype</title>
+  <link rel="icon" href="favicon.svg?v=3" type="image/svg+xml" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    :root{
+      --cream:#EEE9DF; --oat:#C9C1B1; --ink:#1B2632; --slate:#2C3B4D; --amber:#FFB162; --terra:#A35139;
+    }
+    *{box-sizing:border-box;margin:0;padding:0}
+    html,body{height:100%}
+    body{background:var(--ink);color:var(--cream);font-family:'Inter',system-ui,sans-serif;overflow:hidden}
+
+    /* WebGL canvas fills the viewport; CSS gradient is the fallback until the shader loads */
+    #gl{position:fixed;inset:0;width:100%;height:100%;display:block;
+        background:radial-gradient(120% 120% at 30% 20%, #2C3B4D 0%, #1B2632 55%, #12181f 100%);}
+
+    /* scrim: darkens the left/bottom so the cream text stays legible over the molten field */
+    .scrim{position:fixed;inset:0;z-index:1;pointer-events:none;
+           background:
+             linear-gradient(90deg, rgba(15,20,27,.82) 0%, rgba(15,20,27,.5) 32%, rgba(15,20,27,0) 62%),
+             linear-gradient(0deg, rgba(15,20,27,.7) 0%, rgba(15,20,27,0) 34%);}
+
+    .hero{position:fixed;inset:0;display:flex;flex-direction:column;justify-content:center;
+          padding:0 clamp(24px,6vw,96px);z-index:2;pointer-events:none}
+    .eyebrow{font-family:'Space Grotesk',sans-serif;font-weight:500;letter-spacing:.14em;
+             text-transform:uppercase;font-size:.78rem;color:var(--amber);margin-bottom:20px;opacity:0}
+    .title{font-family:'Space Grotesk',sans-serif;font-weight:700;letter-spacing:-0.03em;
+           line-height:.96;font-size:clamp(3rem,11vw,9rem);max-width:14ch;
+           text-shadow:0 2px 40px rgba(15,20,27,.5)}
+    .title .word{display:inline-block;overflow:hidden;vertical-align:top;padding-bottom:.04em}
+    .title .word > span{display:inline-block;transform:translateY(110%)}
+    .title .accent{color:var(--amber)}
+    .sub{margin-top:26px;max-width:46ch;font-size:clamp(1rem,1.4vw,1.2rem);line-height:1.6;
+         color:var(--oat);opacity:0}
+    .tag{position:fixed;top:22px;left:clamp(24px,6vw,96px);z-index:3;
+         font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:.72rem;letter-spacing:.1em;
+         text-transform:uppercase;color:var(--ink);background:var(--amber);padding:6px 14px;border-radius:999px}
+    .back{position:fixed;bottom:24px;left:clamp(24px,6vw,96px);z-index:3;pointer-events:auto;
+          font-family:'Space Grotesk',sans-serif;font-size:.85rem;color:var(--cream);
+          text-decoration:none;opacity:.75;border-bottom:1px solid transparent;transition:.2s}
+    .back:hover{opacity:1;border-bottom-color:var(--amber)}
+    .hint{position:fixed;bottom:24px;right:clamp(24px,6vw,96px);z-index:3;font-size:.8rem;color:var(--oat);opacity:.6}
+    @media (prefers-reduced-motion:reduce){.title .word > span{transform:none}}
+  </style>
+</head>
+<body>
+  <canvas id="gl"></canvas>
+  <div class="scrim"></div>
+
+  <span class="tag">prototype · /test</span>
+
+  <div class="hero">
+    <p class="eyebrow" id="eyebrow">a little alchemy</p>
+    <h1 class="title" aria-label="I fix the faff.">
+      <span class="word"><span>I</span></span>
+      <span class="word"><span>fix</span></span><br />
+      <span class="word"><span>the</span></span>
+      <span class="word"><span class="accent">faff.</span></span>
+    </h1>
+    <p class="sub" id="sub">OGL WebGL shader with a GSAP intro, in the Niggle palette. Move your cursor. This is a sandbox at /test, not the live site.</p>
+  </div>
+
+  <a class="back" href="/">&larr; back to niggle</a>
+  <span class="hint">move the cursor</span>
+
+  <script type="module">
+    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const titleSpans = '.title .word > span';
+
+    function revealStatic(){
+      document.querySelectorAll(titleSpans).forEach(s => s.style.transform = 'none');
+      document.getElementById('eyebrow').style.opacity = 1;
+      document.getElementById('sub').style.opacity = 1;
+    }
+
+    // ---- WebGL shader hero via OGL ---------------------------------------
+    async function initShader(){
+      const { Renderer, Triangle, Program, Mesh, Vec2 } =
+        await import('https://cdn.jsdelivr.net/npm/ogl@1.0.11/+esm');
+
+      const canvas = document.getElementById('gl');
+      const renderer = new Renderer({ canvas, dpr: Math.min(window.devicePixelRatio, 2), alpha: false });
+      const gl = renderer.gl;
+
+      const vertex = `
+        attribute vec2 uv; attribute vec2 position; varying vec2 vUv;
+        void main(){ vUv = uv; gl_Position = vec4(position, 0.0, 1.0); }`;
+
+      const fragment = `
+        precision highp float;
+        uniform float uTime; uniform vec2 uResolution; uniform vec2 uMouse;
+        varying vec2 vUv;
+        vec3 mod289(vec3 x){return x - floor(x*(1.0/289.0))*289.0;}
+        vec2 mod289(vec2 x){return x - floor(x*(1.0/289.0))*289.0;}
+        vec3 permute(vec3 x){return mod289(((x*34.0)+1.0)*x);}
+        float snoise(vec2 v){
+          const vec4 C = vec4(0.211324865405187,0.366025403784439,-0.577350269189626,0.024390243902439);
+          vec2 i=floor(v+dot(v,C.yy)); vec2 x0=v-i+dot(i,C.xx);
+          vec2 i1=(x0.x>x0.y)?vec2(1.0,0.0):vec2(0.0,1.0);
+          vec4 x12=x0.xyxy+C.xxzz; x12.xy-=i1; i=mod289(i);
+          vec3 p=permute(permute(i.y+vec3(0.0,i1.y,1.0))+i.x+vec3(0.0,i1.x,1.0));
+          vec3 m=max(0.5-vec3(dot(x0,x0),dot(x12.xy,x12.xy),dot(x12.zw,x12.zw)),0.0);
+          m=m*m; m=m*m;
+          vec3 x=2.0*fract(p*C.www)-1.0; vec3 h=abs(x)-0.5; vec3 ox=floor(x+0.5); vec3 a0=x-ox;
+          m*=1.79284291400159-0.85373472095314*(a0*a0+h*h);
+          vec3 g; g.x=a0.x*x0.x+h.x*x0.y; g.yz=a0.yz*x12.xz+h.yz*x12.yw;
+          return 130.0*dot(m,g);
+        }
+        float fbm(vec2 p){ float v=0.0,a=0.5; for(int i=0;i<5;i++){v+=a*snoise(p);p*=2.0;a*=0.5;} return v; }
+        void main(){
+          vec2 p=(gl_FragCoord.xy-0.5*uResolution)/uResolution.y;
+          float t=uTime*0.06;
+          vec2 q=vec2(fbm(p+vec2(0.0,t)), fbm(p+vec2(5.2,1.3)-t));
+          vec2 r=vec2(fbm(p+2.0*q+vec2(1.7,9.2)+0.15*t), fbm(p+2.0*q+vec2(8.3,2.8)-0.13*t));
+          float n=fbm(p+2.4*r+0.1*t); n=n*0.5+0.5;
+          vec2 m=(uMouse-0.5*uResolution)/uResolution.y;
+          float glow=smoothstep(0.55,0.0,length(p-m));
+          vec3 ink=vec3(0.106,0.149,0.196); vec3 slate=vec3(0.173,0.231,0.302);
+          vec3 terra=vec3(0.639,0.318,0.224); vec3 amber=vec3(1.0,0.694,0.384); vec3 cream=vec3(0.933,0.914,0.875);
+          vec3 col=mix(ink,slate,smoothstep(0.15,0.6,n));
+          col=mix(col,terra,smoothstep(0.5,0.82,n+0.12*length(r)));
+          col=mix(col,amber,smoothstep(0.74,0.97,n)+0.45*glow);
+          col+=cream*smoothstep(0.92,1.0,n)*0.35;
+          float grain=fract(sin(dot(gl_FragCoord.xy,vec2(12.9898,78.233)))*43758.5453);
+          col+=(grain-0.5)*0.03; col*=1.0-0.28*length(p);
+          gl_FragColor=vec4(col,1.0);
+        }`;
+
+      const program = new Program(gl, { vertex, fragment, uniforms:{
+        uTime:{value:0}, uResolution:{value:new Vec2(1,1)}, uMouse:{value:new Vec2(0.5,0.5)} } });
+      const mesh = new Mesh(gl, { geometry:new Triangle(gl), program });
+
+      const target = new Vec2(0.5, 0.5);
+      const resize = () => {
+        renderer.setSize(window.innerWidth, window.innerHeight);
+        program.uniforms.uResolution.value.set(gl.drawingBufferWidth, gl.drawingBufferHeight);
+      };
+      window.addEventListener('resize', resize); resize();
+      window.addEventListener('pointermove', e => {
+        const dpr = renderer.dpr;
+        target.set(e.clientX*dpr, (window.innerHeight-e.clientY)*dpr);
+      });
+
+      const mouse = program.uniforms.uMouse.value;
+      const loop = (ms) => { program.uniforms.uTime.value = ms*0.001;
+        mouse.x += (target.x-mouse.x)*0.06; mouse.y += (target.y-mouse.y)*0.06;
+        renderer.render({ scene: mesh }); requestAnimationFrame(loop); };
+      if (reduceMotion){ program.uniforms.uTime.value = 12.0; renderer.render({ scene: mesh }); }
+      else requestAnimationFrame(loop);
+    }
+
+    // ---- GSAP text intro -------------------------------------------------
+    async function initIntro(){
+      if (reduceMotion){ revealStatic(); return; }
+      const m = await import('https://cdn.jsdelivr.net/npm/gsap@3.12.5/+esm');
+      const gsap = m.default || m.gsap || m;
+      gsap.set(titleSpans, { yPercent: 110 });
+      gsap.timeline({ defaults:{ ease:'expo.out' } })
+        .to('#eyebrow', { opacity:1, duration:0.8 }, 0.15)
+        .to(titleSpans, { yPercent:0, duration:1.1, stagger:0.09 }, 0.2)
+        .to('#sub', { opacity:1, duration:0.9 }, 0.6);
+    }
+
+    initShader().catch(e => console.error('shader failed (CSS fallback shown):', e));
+    initIntro().catch(e => { console.error('intro failed, revealing text:', e); revealStatic(); });
+
+    // Safety net: if the intro never ran (e.g. tab opened in the background, so
+    // requestAnimationFrame and the GSAP ticker were paused), reveal the text anyway.
+    setTimeout(() => {
+      if (getComputedStyle(document.getElementById('eyebrow')).opacity === '0') revealStatic();
+    }, 4000);
+  </script>
+</body>
+</html>

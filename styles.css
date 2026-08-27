@@ -117,7 +117,9 @@ body::after{content:"";position:fixed;inset:0;z-index:9;pointer-events:none;opac
 .cloud--fall li{transform:translate(var(--fx,0),var(--fy,0)) rotate(var(--fr,0));transition:transform .9s cubic-bezier(.2,.85,.25,1);will-change:transform}
 .cloud--fall.cloud--settled li{transform:rotate(var(--rest,0))}
 .cloud--fall li:hover{transition:transform .2s ease;transform:translateY(-4px) rotate(0)}
-.cloud li.ghostpill{background:transparent;border-style:dashed;border-color:rgba(27,38,50,.4);color:rgba(27,38,50,.66)}
+.cloud li.ghostpill{background:transparent;border-style:dashed;border-color:rgba(27,38,50,.4);color:rgba(27,38,50,.66);cursor:pointer;transition:transform .2s ease,border-color .2s ease,color .2s ease}
+.cloud li.ghostpill a{display:contents;color:inherit;text-decoration:none}
+.cloud li.ghostpill:hover{border-color:var(--terra);color:var(--terra)}
 .build__foot{margin-top:42px;font-size:1.2rem;line-height:1.6;max-width:60ch;color:rgba(27,38,50,.8)}
 .build__foot strong{color:var(--ink);font-weight:600;border-bottom:3px solid var(--amber)}
 .drawline{margin-top:64px;padding-top:48px;border-top:1px solid rgba(27,38,50,.14)}

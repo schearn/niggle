@@ -234,3 +234,29 @@ updateSpy();
   }, { threshold: 0 });
   io.observe(hero);
 })();
+
+// Case-study lightbox (native <dialog>, no dependencies)
+(function initLightbox() {
+  const dlg = document.getElementById('lightbox');
+  const img = document.getElementById('lightbox-img');
+  const cases = document.querySelectorAll('.case');
+  if (!dlg || !img || !cases.length) return;
+  const closeBtn = dlg.querySelector('.lightbox__close');
+
+  cases.forEach((btn) => {
+    btn.addEventListener('click', () => {
+      const full = btn.getAttribute('data-full');
+      const name = btn.querySelector('.case__name');
+      if (!full) return;
+      img.src = full;
+      img.alt = (name ? name.textContent.trim() + ' ' : '') + 'case study';
+      if (typeof dlg.showModal === 'function') dlg.showModal();
+      else dlg.setAttribute('open', '');
+    });
+  });
+
+  if (closeBtn) closeBtn.addEventListener('click', () => dlg.close());
+  // click on the backdrop (outside the image) closes; Esc is handled by <dialog>
+  dlg.addEventListener('click', (e) => { if (e.target === dlg) dlg.close(); });
+  dlg.addEventListener('close', () => { img.src = ''; });
+})();

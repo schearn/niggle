@@ -4,6 +4,10 @@
 # Internal handover notes — local only, never publish (public repo)
 CONTEXT.md
 
+# Case-study source images — the optimised web copies live in casestudies/
+Niggle Casestudies/
+courtcraft-case-study.jpg
+
 # Secrets — never commit these
 .env
 .env.*

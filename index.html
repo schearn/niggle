@@ -43,7 +43,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="styles.css?v=5" />
+  <link rel="stylesheet" href="styles.css?v=6" />
 
   <!-- Structured data for search + AI answer engines -->
   <script type="application/ld+json">
@@ -342,6 +342,40 @@
     <p class="center"><a class="btn-primary pricing__cta" href="#contact">start with a free chat</a></p>
   </section>
 
+  <!-- ===================== CASE STUDIES ===================== -->
+  <section class="cases" id="work">
+    <div class="wrap">
+      <p class="eyebrow eyebrow--light center">case studies</p>
+      <h2 class="h2 cases__title">A few things I've shipped.</h2>
+      <div class="cases__grid">
+        <button type="button" class="case" data-full="casestudies/courtcraft.jpg" aria-label="Open the CourtCraft case study">
+          <span class="case__shot"><img src="casestudies/courtcraft.jpg" width="1800" height="1200" loading="lazy" alt="CourtCraft case study: a white-label basketball club app" /></span>
+          <span class="case__body">
+            <span class="case__name">CourtCraft</span>
+            <span class="case__desc">A white-label club app: training, fixtures and video for a basketball club of 80 players across five squads.</span>
+            <span class="case__cue">See the case study</span>
+          </span>
+        </button>
+        <button type="button" class="case" data-full="casestudies/dot2dot.jpg" aria-label="Open the Dot to Dot Nutrition case study">
+          <span class="case__shot"><img src="casestudies/dot2dot.jpg" width="2000" height="1333" loading="lazy" alt="Dot to Dot Nutrition case study: brand, website and Instagram ad funnel" /></span>
+          <span class="case__body">
+            <span class="case__name">Dot to Dot Nutrition</span>
+            <span class="case__desc">A whole brand, a live website and an Instagram ad funnel for a nutritional therapist.</span>
+            <span class="case__cue">See the case study</span>
+          </span>
+        </button>
+        <button type="button" class="case" data-full="casestudies/offbyheart.jpg" aria-label="Open the Off by Heart case study">
+          <span class="case__shot"><img src="casestudies/offbyheart.jpg" width="1536" height="1024" loading="lazy" alt="Off by Heart case study: a GCSE science revision app" /></span>
+          <span class="case__body">
+            <span class="case__name">Off by Heart</span>
+            <span class="case__desc">A GCSE science revision app built around recalling answers from memory, with pupil data kept inside the school.</span>
+            <span class="case__cue">See the case study</span>
+          </span>
+        </button>
+      </div>
+    </div>
+  </section>
+
   <!-- ===================== QUOTE ===================== -->
   <section class="quote">
     <div class="wrap">
@@ -437,6 +471,12 @@
     <span class="lfoot__copy">© <span id="year"></span></span>
   </footer>
 
-  <script src="script.js?v=4"></script>
+  <!-- ===================== LIGHTBOX ===================== -->
+  <dialog class="lightbox" id="lightbox" aria-label="Case study, enlarged">
+    <button type="button" class="lightbox__close" aria-label="Close">&times;</button>
+    <img class="lightbox__img" id="lightbox-img" src="" alt="" />
+  </dialog>
+
+  <script src="script.js?v=5"></script>
 </body>
 </html>

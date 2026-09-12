@@ -197,6 +197,36 @@ body::after{content:"";position:fixed;inset:0;z-index:9;pointer-events:none;opac
 .faq ::selection{background:var(--terra);color:var(--cream)}
 .faq ::-moz-selection{background:var(--terra);color:var(--cream)}
 
+/* ===================== CASE STUDIES ===================== */
+.cases{background:var(--cream);color:var(--ink);padding:110px 0;scroll-margin-top:84px}
+.cases__title{text-align:center;margin-top:6px}
+.cases__grid{margin-top:52px;display:grid;grid-template-columns:repeat(3,1fr);gap:26px}
+.case{display:flex;flex-direction:column;text-align:left;padding:0;border:1px solid rgba(27,38,50,.12);background:#fff;
+  border-radius:18px;overflow:hidden;cursor:pointer;font:inherit;color:inherit;
+  transition:transform .2s ease,box-shadow .2s ease,border-color .2s ease}
+.case:hover{transform:translateY(-5px);box-shadow:0 26px 50px -28px rgba(27,38,50,.5);border-color:rgba(27,38,50,.2)}
+.case:focus-visible{outline:3px solid var(--amber);outline-offset:3px}
+.case__shot{display:block;aspect-ratio:16/10;overflow:hidden;background:var(--ink)}
+.case__shot img{width:100%;height:100%;object-fit:cover;object-position:left top;display:block;transition:transform .4s ease}
+.case:hover .case__shot img{transform:scale(1.04)}
+.case__body{display:flex;flex-direction:column;gap:8px;padding:22px 22px 24px}
+.case__name{font-family:var(--ff-head);font-weight:700;font-size:1.3rem;color:var(--ink)}
+.case__desc{color:rgba(27,38,50,.78);font-size:.98rem;line-height:1.55}
+.case__cue{margin-top:6px;font-family:var(--ff-head);font-weight:600;font-size:.9rem;color:var(--terra)}
+.case__cue::after{content:" \2197"}
+.cases ::selection{background:var(--terra);color:var(--cream)}
+.cases ::-moz-selection{background:var(--terra);color:var(--cream)}
+
+/* lightbox (native dialog) */
+.lightbox{border:none;padding:0;background:transparent;max-width:min(94vw,1400px);max-height:92vh;overflow:visible}
+.lightbox::backdrop{background:rgba(11,15,20,.86)}
+.lightbox__img{display:block;width:100%;height:auto;max-height:92vh;object-fit:contain;border-radius:12px;
+  box-shadow:0 30px 90px -20px rgba(0,0,0,.75)}
+.lightbox__close{position:absolute;top:8px;right:8px;width:42px;height:42px;border-radius:50%;border:none;cursor:pointer;
+  background:var(--amber);color:var(--ink);font-size:1.6rem;line-height:1;display:grid;place-items:center;
+  box-shadow:0 6px 20px rgba(0,0,0,.45)}
+.lightbox__close:hover{background:#fff}
+
 /* ===================== ABOUT ===================== */
 .about{background:var(--slate);color:var(--cream);padding:120px 0;scroll-margin-top:84px}
 .about__grid{display:grid;grid-template-columns:1.35fr .85fr;gap:56px;align-items:center}
@@ -243,6 +273,7 @@ body::after{content:"";position:fixed;inset:0;z-index:9;pointer-events:none;opac
 @media (max-width:900px){
   .band__grid{grid-template-columns:1fr;gap:24px}
   .about__grid{grid-template-columns:1fr;gap:40px}
+  .cases__grid{grid-template-columns:1fr;gap:22px;max-width:520px;margin-inline:auto}
 }
 @media (max-width:680px){
   .nav__toggle{display:flex}
@@ -263,7 +294,8 @@ body::after{content:"";position:fixed;inset:0;z-index:9;pointer-events:none;opac
   html{scroll-behavior:auto}
   .aurora,.dot,.scrollcue span,.formcard,.band__mark{animation:none}
   .pricing__squiggle animate{display:none}
-  .btn-primary:hover,.tl__item:hover .tl__body,.cloud li:hover,.brand:hover img{transform:none}
+  .btn-primary:hover,.tl__item:hover .tl__body,.cloud li:hover,.brand:hover img,.case:hover{transform:none}
+  .case:hover .case__shot img{transform:none}
   .cloud--fall li{opacity:1;transform:none;transition:none}
   .js .reveal{opacity:1;transform:none}
 }

@@ -239,14 +239,14 @@ updateSpy();
 (function initLightbox() {
   const dlg = document.getElementById('lightbox');
   const img = document.getElementById('lightbox-img');
-  const cases = document.querySelectorAll('.case');
-  if (!dlg || !img || !cases.length) return;
+  const shots = document.querySelectorAll('.case__shot');
+  if (!dlg || !img || !shots.length) return;
   const closeBtn = dlg.querySelector('.lightbox__close');
 
-  cases.forEach((btn) => {
-    btn.addEventListener('click', () => {
-      const full = btn.getAttribute('data-full');
-      const name = btn.querySelector('.case__name');
+  shots.forEach((shot) => {
+    shot.addEventListener('click', () => {
+      const full = shot.getAttribute('data-full');
+      const name = shot.closest('.case') && shot.closest('.case').querySelector('.case__name');
       if (!full) return;
       img.src = full;
       img.alt = (name ? name.textContent.trim() + ' ' : '') + 'case study';

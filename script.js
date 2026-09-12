@@ -259,4 +259,13 @@ updateSpy();
   // click on the backdrop (outside the image) closes; Esc is handled by <dialog>
   dlg.addEventListener('click', (e) => { if (e.target === dlg) dlg.close(); });
   dlg.addEventListener('close', () => { img.src = ''; });
+
+  // Cursor-tracked spotlight glow on each card
+  cases.forEach((card) => {
+    card.addEventListener('pointermove', (e) => {
+      const r = card.getBoundingClientRect();
+      card.style.setProperty('--mx', ((e.clientX - r.left) / r.width * 100) + '%');
+      card.style.setProperty('--my', ((e.clientY - r.top) / r.height * 100) + '%');
+    });
+  });
 })();

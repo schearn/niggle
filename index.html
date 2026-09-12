@@ -6,6 +6,7 @@
   <title>niggle | Simple tools. Serious impact.</title>
   <meta name="description" content="Small, bespoke software tools that fix the everyday workflow niggles off-the-shelf software can't. Built fast, fitted exactly, no bloat, no lock-in." />
   <meta name="theme-color" content="#1B2632" />
+  <link rel="canonical" href="https://niggle.work/" />
 
   <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-7TND42WS81"></script>
@@ -42,7 +43,109 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="styles.css?v=4" />
+  <link rel="stylesheet" href="styles.css?v=5" />
+
+  <!-- Structured data for search + AI answer engines -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "ProfessionalService",
+        "@id": "https://niggle.work/#business",
+        "name": "Niggle",
+        "url": "https://niggle.work/",
+        "image": "https://niggle.work/og-image.png",
+        "logo": "https://niggle.work/favicon-512.png",
+        "description": "Bespoke, AI-assisted internal software tools for UK small and medium businesses. Niggle finds the one workflow quietly costing a team hours and builds a single small tool to fix it. Built fast, fitted exactly, no bloat, no lock-in.",
+        "slogan": "I fix the faff.",
+        "founder": { "@id": "https://niggle.work/#sam" },
+        "areaServed": { "@type": "Country", "name": "United Kingdom" },
+        "address": { "@type": "PostalAddress", "addressLocality": "Bristol", "addressCountry": "GB" },
+        "priceRange": "£550 per day",
+        "knowsAbout": [
+          "Bespoke software development",
+          "Internal business tools",
+          "Workflow automation",
+          "AI-assisted software",
+          "Web applications",
+          "Dashboards and reporting"
+        ]
+      },
+      {
+        "@type": "Person",
+        "@id": "https://niggle.work/#sam",
+        "name": "Sam Hearn",
+        "jobTitle": "Founder",
+        "worksFor": { "@id": "https://niggle.work/#business" },
+        "homeLocation": { "@type": "Place", "name": "Bristol, United Kingdom" },
+        "description": "Founder of Niggle. Background leading digital teams and overseeing the build of web platforms and systems."
+      },
+      {
+        "@type": "WebSite",
+        "@id": "https://niggle.work/#website",
+        "url": "https://niggle.work/",
+        "name": "Niggle",
+        "inLanguage": "en-GB",
+        "publisher": { "@id": "https://niggle.work/#business" }
+      },
+      {
+        "@type": "FAQPage",
+        "@id": "https://niggle.work/#faq",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "What does Niggle build?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Small, bespoke internal tools, built for exactly how your team works: booking systems, quote builders, intake and triage bots, ops dashboards, client portals, data plumbing between systems, web apps, and one-off AI products that did not exist before. If your team does it, I can usually build a tool for it."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Who is behind Niggle?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Just me, Sam Hearn. I am based in Bristol and work with small and medium businesses across the UK. I have spent years leading digital teams and overseeing platform builds, so you deal directly with the person who builds the thing, start to finish."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "How much does it cost?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "The first chat, a deep dive, and a fully branded prototype are free, before you pay anything. After that my day rate is 550 pounds, and a typical build runs five to ten days spread across a few weeks. I price against what the problem is costing you, so the fix pays for itself."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "How fast can it be built?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Fast. Most builds land in days, not months, because the scope is small and deliberate: we agree the must-haves for a production-ready first version and park the nice-to-haves for later phases."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Do I own what you build?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Yes, completely. It is yours, with no lock-in, and I train your team to run it. Ongoing support is there if you want it, for an agreed fee, but it is never forced."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "What won't Niggle take on?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Anything heavy on GDPR-critical data, secure logins at scale, or massive file storage. That is where I point you to a specialist and tell you straight, rather than leave a half-built risk with your name on it."
+            }
+          }
+        ]
+      }
+    ]
+  }
+  </script>
 </head>
 <body>
   <a class="skip" href="#main">Skip to content</a>
@@ -267,6 +370,40 @@
           <p class="about__tag">tiny fixes.<br />big difference.</p>
           <p class="about__meta">solo-founded · powerful tools · real results</p>
         </aside>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== FAQ ===================== -->
+  <section class="faq" id="faq">
+    <div class="wrap faq__inner">
+      <p class="eyebrow eyebrow--light center">common questions</p>
+      <h2 class="h2 faq__title">The bits people ask.</h2>
+      <div class="faq__list">
+        <details class="faq__item">
+          <summary>What does Niggle build?</summary>
+          <p>Small, bespoke internal tools, built for exactly how your team works: booking systems, quote builders, intake and triage bots, ops dashboards, client portals, data plumbing between systems, web apps, and one-off AI products that didn't exist before. If your team does it, I can usually build a tool for it.</p>
+        </details>
+        <details class="faq__item">
+          <summary>Who is behind Niggle?</summary>
+          <p>Just me, Sam Hearn. I'm based in Bristol and work with small and medium businesses across the UK. I've spent years leading digital teams and overseeing platform builds, so you deal directly with the person who builds the thing, start to finish.</p>
+        </details>
+        <details class="faq__item">
+          <summary>How much does it cost?</summary>
+          <p>The first chat, a deep dive, and a fully branded prototype are free, before you pay anything. After that my day rate is £550, and a typical build runs five to ten days spread across a few weeks. I price against what the problem is costing you, so the fix pays for itself.</p>
+        </details>
+        <details class="faq__item">
+          <summary>How fast can it be built?</summary>
+          <p>Fast. Most builds land in days, not months, because the scope is small and deliberate: we agree the must-haves for a production-ready first version and park the nice-to-haves for later phases.</p>
+        </details>
+        <details class="faq__item">
+          <summary>Do I own what you build?</summary>
+          <p>Yes, completely. It's yours, with no lock-in, and I train your team to run it. Ongoing support is there if you want it, for an agreed fee, but it's never forced.</p>
+        </details>
+        <details class="faq__item">
+          <summary>What won't Niggle take on?</summary>
+          <p>Anything heavy on GDPR-critical data, secure logins at scale, or massive file storage. That's where I point you to a specialist and tell you straight, rather than leave a half-built risk with your name on it.</p>
+        </details>
       </div>
     </div>
   </section>

@@ -1,0 +1,26 @@
+# Niggle
+
+> Niggle is the personal studio of Sam Hearn (Bristol, United Kingdom). It builds small, bespoke, AI-assisted internal software tools for UK small and medium businesses: the tool that fixes the one workflow quietly costing a team hours. Tagline: "I fix the faff."
+
+## What Niggle builds
+- Bespoke internal tools, fitted to how a team actually works: booking systems, quote builders, intake and triage bots, ops dashboards, client portals, kit and asset tracking, approval flows, data plumbing between systems, web apps, gamified processes, and one-off AI products.
+- One person builds it end to end, so you deal directly with the maker. No bloat, no lock-in.
+
+## How it works and what it costs
+- Free to start: a 30-minute chat, a deep dive (NDA if needed), and a fully branded working prototype, all before you pay anything.
+- Then an agreed, fixed-scope, production-ready first build: must-have features first, nice-to-haves kept in a shared backlog for later phases.
+- Day rate: £550. A typical build runs five to ten days spread across a few weeks.
+- Priced against what the problem is costing the business, so the fix pays for itself.
+- You own what is built and are trained to run it. Optional ongoing support for an agreed fee.
+
+## Where Niggle draws the line
+- Not suited to GDPR-critical data at scale, secure logins at scale, or massive file storage. Those are referred to a specialist.
+
+## Founder
+- Sam Hearn, Bristol. Background leading digital teams (DevOps, engineers, designers, testers, project managers) and overseeing the build of web platforms and systems.
+
+## Contact
+- Enquiries: https://niggle.work/#contact
+
+## Notes
+- Niggle is Sam Hearn's personal venture, separate from his employer. His professional background is biography and credibility, not a guarantor of Niggle's work.
